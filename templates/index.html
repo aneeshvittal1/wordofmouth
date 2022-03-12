@@ -1,11 +1,15 @@
 {% load socialaccount %}
 <html>
-<body>
-<h1>Word of Mouth</h1>
-{% if user.is_authenticated %}
-  <p>Welcome, You are logged in as {{ user.username }}</p>
-{% else %}
-  <a href="{% provider_login_url 'google' %}">Login With Google</a>
-{% endif %}
-</body>
+  <body>
+    {% include "navbar.html" %}
+    <div style="text-align:center; margin-top: 20%;">
+      {% if user.is_authenticated %}
+      <h1>Welcome Back <span style="color: #73bcf8">{{ user.username }}</span>!</h1>
+        <p>What's cooking?</p>
+      {% else %}
+        <h1>Welcome Back!</h1>
+        <a class="btn btn-primary" style="margin-top: 10px;"href="{% provider_login_url 'google' %}">Login with Google</a>
+      {% endif %}
+    </div>
+  </body>
 </html>
