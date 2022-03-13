@@ -19,10 +19,10 @@ from django.views.generic import TemplateView
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path('', include('wordofmouth.urls')),
-    path('wordofmouth', include('wordofmouth.urls')),
+    path('', TemplateView.as_view(template_name="index.html")),
+    path('wordofmouth', TemplateView.as_view(template_name="explore.html")),
     path('admin/', admin.site.urls),
-    path('login/', TemplateView.as_view(template_name="index.html")),
+    path('login/', TemplateView.as_view(template_name="login.html")),
     path('accounts/', include('allauth.urls')),
     path('logout', LogoutView.as_view()),
 ]
