@@ -9,33 +9,23 @@
   <body>
     {% block body %}
 
-    {% if messages %}
-    <div>
-      <strong>Messages:</strong>
-      <ul>
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
-
-    <div>
-      <strong>Menu:</strong>
-      <ul>
+    <div style="margin-left: 35%;margin-top: 8%;">
+      <div style="text-align:left;">
+        <h1>Many Delicious Ideas.</h1>
+        <h1>One Scrumptious Account.</h1>
+      </div>
         {% if user.is_authenticated %}
-        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+        <a class="btn btn-primary" style="margin-top: 10px;" href="{% url 'account_email' %}">Change E-mail</a>
+        <a class="btn btn-primary" style="margin-top: 10px;" href="{% url 'account_logout' %}">Sign Out</a>
         {% else %}
-        <li><a href="{% url 'account_login' %}">Sign In</a></li>
-        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+        <a class="btn btn-primary" style="margin-top: 10px;" href="{% url 'account_login' %}">Sign In</a>
+        <a  class="btn btn-primary" style="margin-top: 10px;"href="{% url 'account_signup' %}">Sign Up</a>
         {% endif %}
-      </ul>
-    </div>
     {% block content %}
     {% endblock %}
     {% endblock %}
     {% block extra_body %}
     {% endblock %}
+  </div>
   </body>
 </html>
