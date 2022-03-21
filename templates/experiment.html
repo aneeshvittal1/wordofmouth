@@ -1,0 +1,17 @@
+
+{% load socialaccount %}
+<html>
+  <body>
+    {% include "navbar.html" %}
+    <div style="text-align:center; margin-top: 20%;">
+      {% if user.is_authenticated %}
+      <h1>Welcome Back <span style="color: #73bcf8">{{ user.username }}</span>!</h1>
+        <p>The is the experiments page</p>
+        <a class="btn btn-primary" style="margin-top: 10px;" href="{% url 'account_logout' %}">Sign Out</a>
+      {% else %}
+        <h1>Please log in if you want to make a recipe</h1>
+        <a class="btn btn-primary" style="margin-top: 10px;"href="{% provider_login_url 'google' %}">Login with Google</a>
+      {% endif %}
+    </div>
+  </body>
+</html>
