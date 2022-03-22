@@ -3,8 +3,10 @@ from django.views.generic import TemplateView
 
 from . import views
 
+app_name = 'wordofmouth'
 urlpatterns = [
-    path('', TemplateView.as_view(template_name="explore.html")),
-    path('experiment', TemplateView.as_view(template_name="experiment.html")),
-    path('experiment/<int:recipe_id>', views.recipe_detail, name="recipe_detail"),
+    path('', views.recipe_explore, name="recipe_explore"),
+    path('experiment', views.recipe_experiment, name="recipe_experiment"),
+    path('recipe/<int:recipe_id>', views.recipe_detail, name="recipe_detail"),
+    path('wordofmouth/newrecipe', views.new_recipe, name='new_recipe')
 ]

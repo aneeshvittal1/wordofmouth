@@ -1,4 +1,3 @@
-
 {% load socialaccount %}
 <html>
   <body>
@@ -7,6 +6,15 @@
       {% if user.is_authenticated %}
       <h1>Welcome Back <span style="color: #73bcf8">{{ user.username }}</span>!</h1>
         <p>The is the experiments page</p>
+        <p>{{ "Submit a new recipe below:" }}</p>
+        <form action="{% url 'wordofmouth:new_recipe' %}" method="post">
+        {% csrf_token %}   
+            <label for="title">Recipe Title:</label><br>
+            <input type="text" id="title" name="title"><br>
+            <!-- <label for="thought">Thought:</label><br>
+            <input type="text" id="thought" name="thought"><br><br> -->
+            <input type="submit" value="Submit">
+        </form>
         <a class="btn btn-primary" style="margin-top: 10px;" href="{% url 'account_logout' %}">Sign Out</a>
       {% else %}
         <h1>Please log in if you want to make a recipe</h1>
