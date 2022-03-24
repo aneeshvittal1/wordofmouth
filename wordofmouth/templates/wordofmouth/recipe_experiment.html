@@ -11,8 +11,8 @@
         {% csrf_token %}   
             <label for="title">Recipe Title:</label><br>
             <input type="text" id="title" name="title"><br>
-            <!-- <label for="thought">Thought:</label><br>
-            <input type="text" id="thought" name="thought"><br><br> -->
+            <label for="instructions">Instructions:</label><br>
+            <input type="text" id="instructions" name="instructions"><br><br>
             <input type="submit" value="Submit">
         </form>
         <a class="btn btn-primary" style="margin-top: 10px;" href="{% url 'account_logout' %}">Sign Out</a>
