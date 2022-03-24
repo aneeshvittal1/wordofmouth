@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'wordofmouth.apps.WordofmouthConfig',
 ]
 
 MIDDLEWARE = [
@@ -148,7 +149,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 5
+SITE_ID = 6
 
 LOGIN_REDIRECT_URL = '/wordofmouth'
 LOGOUT_REDIRECT_URL = '/'
