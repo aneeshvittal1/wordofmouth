@@ -27,6 +27,6 @@ def recipe_experiment(request):
     return render(request, 'wordofmouth/recipe_experiment.html')
 
 def new_recipe(request):
-    r = Recipe(recipe_title=request.POST['title'], likes=0, pub_date=timezone.now(), instructions=request.POST['instructions'])
+    r = Recipe(recipe_title=request.POST['title'], likes=0, pub_date=timezone.now(), instructions=request.POST['instructions'], picture=request.FILES['filename'])
     r.save()
     return render(request, 'wordofmouth/new_recipe.html', {'recipe': r})
