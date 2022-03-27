@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'wordofmouth.apps.WordofmouthConfig',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -149,7 +150,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 5
+SITE_ID = 4
 
 LOGIN_REDIRECT_URL = '/wordofmouth'
 LOGOUT_REDIRECT_URL = '/'
@@ -165,3 +166,13 @@ except ImportError:
 if 'DATABASE_URL' in os.environ:
     import dj_database_url
     DATABASES = {'default': dj_database_url.config()}
+
+#AWS SETTINGS
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACC_KEY']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SEC_KEY']
+AWS_STORAGE_BUCKET_NAME = 'wordofmoutha9'
+AWS_QUERYSTRING_AUTH = False
+
+MEDIA_URL = 'https://wordofmoutha9.s3.us-east-1.amazonaws.com/media/'

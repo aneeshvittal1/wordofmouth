@@ -4,6 +4,7 @@
     {% include "navbar.html" %}
     <div style="text-align:center; margin-top: 8%;">
       <h1>{{ recipe.recipe_title }}</h1>
+      <img src ="{{recipe.picture.url}}">
       <p>{{ recipe.instructions }}</p>
     </div>
   </body>
