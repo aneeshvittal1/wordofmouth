@@ -20,7 +20,7 @@ class Recipe(models.Model):
     likes = models.IntegerField(default=0)
     pub_date = models.DateTimeField('date published')
     instructions = models.TextField(blank=True)
-    picture = models.FileField(upload_to=rename_file)
+    picture = models.FileField(rename_file)
     
     
 
