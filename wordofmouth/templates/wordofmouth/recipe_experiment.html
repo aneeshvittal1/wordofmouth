@@ -13,7 +13,7 @@
             <input type="text" id="title" name="title"><br>
             <label for="instructions">Instructions:</label><br>
             <input type="text" id="instructions" name="instructions"><br><br>
-            <input type="file" id="filename" name="filename">
+            <input type="file" accept=".jpg,.jpeg,.png" id="filename" name="filename">
             <input type="submit" value="Submit">
         </form>
         <a class="btn btn-primary" style="margin-top: 10px;" href="{% url 'account_logout' %}">Sign Out</a>
