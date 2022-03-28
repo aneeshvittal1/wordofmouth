@@ -15,6 +15,7 @@ class Recipe(models.Model):
     # fields
     recipe_title = models.CharField(max_length=200)
     likes = models.PositiveIntegerField(default=0)
+    is_liked = False
     pub_date = models.DateTimeField('date published')
     instructions = models.TextField(blank=True)
     # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="author")
@@ -25,10 +26,10 @@ class Recipe(models.Model):
         return self.recipe_title
 
 
-class Like(models.Model):
-    #user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="users")
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="recipes")
-    already_liked = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"you liked {self.recipe}"
+# class Like(models.Model):
+#     #user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="users")
+#     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="recipes")
+#     already_liked = models.BooleanField(default=False)
+#
+#     def __str__(self):
+#         return f"you liked {self.recipe}"
