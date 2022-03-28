@@ -22,14 +22,9 @@ def recipe_detail(request, recipe_id):
         raise Http404("Recipe does not exist")
     #recipe = get_object_or_404(Recipe, pk=recipe_id)
 
-    if not recipe.is_liked:
+    if request.method == 'POST':
         recipe.likes += 1
         recipe.save()
-        recipe.is_liked = True
-    else:
-        recipe.likes -= 1
-        recipe.save()
-        recipe.is_liked = False
 
     return render(request, 'wordofmouth/recipe_detail.html', {'recipe': recipe})
 

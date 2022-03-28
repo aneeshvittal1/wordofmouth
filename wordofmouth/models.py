@@ -15,7 +15,6 @@ class Recipe(models.Model):
     # fields
     recipe_title = models.CharField(max_length=200)
     likes = models.PositiveIntegerField(default=0)
-    is_liked = False
     pub_date = models.DateTimeField('date published')
     instructions = models.TextField(blank=True)
     # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="author")
