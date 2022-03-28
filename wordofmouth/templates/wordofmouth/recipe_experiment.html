@@ -7,12 +7,13 @@
       <h1>Welcome Back <span style="color: #73bcf8">{{ user.username }}</span>!</h1>
         <p>The is the experiments page</p>
         <p>{{ "Submit a new recipe below:" }}</p>
-        <form action="{% url 'wordofmouth:new_recipe' %}" method="post">
+        <form action="{% url 'wordofmouth:new_recipe' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}   
             <label for="title">Recipe Title:</label><br>
             <input type="text" id="title" name="title"><br>
             <label for="instructions">Instructions:</label><br>
             <input type="text" id="instructions" name="instructions"><br><br>
+            <input type="file" accept=".jpg,.jpeg,.png" id="filename" name="filename">
             <input type="submit" value="Submit">
         </form>
         <a class="btn btn-primary" style="margin-top: 10px;" href="{% url 'account_logout' %}">Sign Out</a>
