@@ -1,9 +1,16 @@
 from urllib import request
+
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.contrib import auth
 import os
 
 # Create your models here.
+
+
+# class User(AbstractUser):
+#     pass
+
 
 class Recipe(models.Model):
     # fields
@@ -17,9 +24,10 @@ class Recipe(models.Model):
         return self.pk
     
     recipe_title = models.CharField(max_length=200)
-    likes = models.IntegerField(default=0)
+    likes = models.PositiveIntegerField(default=0)
     pub_date = models.DateTimeField('date published')
     instructions = models.TextField(blank=True)
+
     picture = models.FileField(rename_file)
     
     
@@ -27,5 +35,4 @@ class Recipe(models.Model):
     # __str__() method to easily see the title
     def __str__(self):
         return self.recipe_title
-
 
