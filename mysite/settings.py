@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'wordofmouth.apps.WordofmouthConfig',
+    'django_quill',
     'storages',
 ]
 
@@ -151,6 +152,26 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 SITE_ID = 5
+
+QUILL_CONFIGS = {
+    'default':{
+        'theme': 'snow',
+        'modules': {
+            'syntax': True,
+            'toolbar': [
+                [
+                    {'header': []},
+                    {'align': []},
+                    'bold', 'italic', 'underline', 'strike', 'blockquote',
+                    {'color': []},
+                    {'background': []},
+                ],
+                ['code-block', 'link'],
+                ['clean'],
+            ]
+        }
+    }
+}
 
 LOGIN_REDIRECT_URL = '/wordofmouth'
 LOGOUT_REDIRECT_URL = '/'

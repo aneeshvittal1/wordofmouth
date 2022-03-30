@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import Http404, HttpResponseRedirect
 from django.http import HttpResponse
 from .models import Recipe
+from .forms import RecipePostForm
 
 
 def index(request):
@@ -36,10 +37,10 @@ def recipe_explore(request):
     return render(request, 'wordofmouth/recipe_explore.html', context)
 
 def recipe_experiment(request):
-    return render(request, 'wordofmouth/recipe_experiment.html')
+    return render(request, 'wordofmouth/recipe_experiment.html',{'form': RecipePostForm})
 
 def new_recipe(request):
-    r = Recipe(recipe_title=request.POST['title'], likes=0, pub_date=timezone.now(), instructions=request.POST['instructions'], picture=request.FILES['filename'])
+    r = Recipe(recipe_title=request.POST['recipe_title'], likes=0, pub_date=timezone.now(), instructions=request.POST['instructions'], picture=request.FILES['filename'])
     r.save()
     return render(request, 'wordofmouth/new_recipe.html', {'recipe': r})
 
