@@ -1,13 +1,32 @@
 {% load socialaccount %}
+ <!-- Bootstrap icons -->
+ <link
+ rel="stylesheet"
+ href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+/>
 <html>
   <body>
     {% include "navbar.html" %}
-    <div style="margin-top: 20px; margin-left:10%; margin-right:10%">
-      <div>
-        <h1 style="color:navy;font-size: 70px;">{{ recipe.recipe_title }}</h1>
+    <div style="margin-top: 10px; margin-left:15%; margin-right:15%">
+      <div class="d-flex bd-highlight mb-3" style="height:80px">
+        <div class="me-auto p-2 bd-highlight">
+          <h1 style="color:navy;font-size: 70px;">{{ recipe.recipe_title }}</h1>
+        </div>
+        <div class="p-2 bd-highlight">
+          <form action="{% url 'wordofmouth:recipe_detail' recipe.id %}" method="post" name="like" id="likeform">
+            {% csrf_token%}
+            <button style="margin-top: 25px;"type="submit" name="like" value="{{ recipe.id }}" class="btn btn-primary">
+              <i class="bi bi-hand-thumbs-up-fill"></i>
+            </button>
+              <p>{{ recipe.likes }} likes</p>
+          </form>
+        </div>
       </div>
       <div style="height:10px;background-color: skyblue;"></div>
-      <div style="font-size:20px; margin-top: 30px;">
+      <div style="text-align: left;">
+        <img style="max-height:50vh; max-width: 68vw; margin-top:30px; text-align: center;"src ="{{recipe.picture.url}}">
+      </div>
+      <div style="font-size:20px; margin-top: 20px;">
         <p>{{ recipe.instructions.html | safe }}</p>
       </div>
     </div>

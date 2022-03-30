@@ -5,5 +5,5 @@ class RecipePostForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = (
-            'recipe_title','pub_date','instructions',
+            'recipe_title','pub_date','instructions','picture'
         )
