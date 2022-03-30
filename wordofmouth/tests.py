@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .models import Recipe
 from django.utils import timezone
+import json
 
 # Create your tests here.
 class LoginTest(TestCase):
@@ -18,9 +19,17 @@ class LoginTest(TestCase):
 
 class RecipeModelTests(TestCase):
     def test_title_likes_instructions(self):
-        r = Recipe(recipe_title='Bread and Wine', likes=12, pub_date=timezone.now(), instructions='get bread and wine')
+        x = {
+            "delta":{
+                "ops": [
+                    { "insert": ' Bread and Wine ' },
+                ]
+            }
+        }
+        y = json.dumps(x)
+        r = Recipe(recipe_title='Bread and Wine', likes=12, pub_date=timezone.now(), instructions=y)
         r.save()
         self.assertEquals(r.recipe_title, 'Bread and Wine')
         self.assertEquals(r.likes, 12)
-        self.assertEquals(r.instructions, 'get bread and wine')
+        self.assertEquals(r.instructions, y)
         r.delete()
