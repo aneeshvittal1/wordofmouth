@@ -30,8 +30,8 @@ class Recipe(models.Model):
     pub_date = models.DateTimeField('date published')
     instructions = QuillField()
     picture = models.FileField(rename_file)
-    author = User.get_username()
-    
+    author = models.CharField(max_length=191)
+
     
     
 
