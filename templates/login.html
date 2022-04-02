@@ -4,12 +4,12 @@
     {% include "navbar.html" %}
     <div style="text-align:center; margin-top: 20%;">
       {% if user.is_authenticated %}
-      <h1>Welcome Back <span style="color: #73bcf8">{{ user.username }}</span>!</h1>
+      <h1>Welcome Back <span style="color: #B3816E">{{ user.username }}</span>!</h1>
         <p>What's cooking?</p>
-        <a class="btn btn-primary" style="margin-top: 10px;" href="{% url 'account_logout' %}">Sign Out</a>
+        <a class="btn btn-light" style="margin-top: 10px;background-color: #ffdd77;color:black;font-weight: bold;" href="{% url 'account_logout' %}">Sign Out</a>
       {% else %}
         <h1>Welcome Back!</h1>
-        <a class="btn btn-primary" style="margin-top: 10px;"href="{% provider_login_url 'google' %}">Login with Google</a>
+        <a class="btn btn-light" style="margin-top: 10px;background-color: #ffdd77;color:black;font-weight: bold;"href="{% provider_login_url 'google' %}">Login with Google</a>
       {% endif %}
     </div>
   </body>
