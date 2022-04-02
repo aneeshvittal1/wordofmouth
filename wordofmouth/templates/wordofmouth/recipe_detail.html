@@ -10,7 +10,7 @@
     <div style="margin-top: 10px; margin-left:15%; margin-right:15%">
       <div class="d-flex bd-highlight mb-3" style="height:80px">
         <div class="me-auto p-2 bd-highlight">
-          <h1 style="color:navy;font-size: 70px;">{{ recipe.recipe_title }}</h1>
+          <h1 style="color:#e16f62;font-size: 70px;">{{ recipe.recipe_title }}</h1>
         </div>
         <div class="p-2 bd-highlight">
           <form action="{% url 'wordofmouth:recipe_detail' recipe.id %}" method="post" name="like" id="likeform">
@@ -22,7 +22,7 @@
           </form>
         </div>
       </div>
-      <div style="height:10px;background-color: skyblue;"></div>
+      <div style="height:10px;background-color: #ffdd77;"></div>
       <div style="text-align: left;">
         <img style="max-height:50vh; max-width: 68vw; margin-top:30px; text-align: center;"src ="{{recipe.picture.url}}">
       </div>

@@ -1,7 +1,24 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'index/style.css' %}">
 <html>
     {% include "navbar.html" %}
-    <div style="margin-left:35%;margin-top:8%">
-        <h1>This is Word of Mouth.</h1>
-        <h2>Unleash your culinary creativity.</h2>
+    <div>
+        <div>
+            <video autoplay muted loop id="myVideo">
+                <source src="https://wordofmoutha9.s3.us-east-1.amazonaws.com/video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="content">
+            <div style="margin-left:30px">
+                <h1 style="font-size: 100px;">This is Word of Mouth.</h1>
+                <h2 style="font-size: 50px;">Unleash your culinary creativity.</h2>
+                <h5 style="font-size: 35px;">>Dive into our community's recipes.</h5>
+                <a style = "background-color: #ffdd77;color:black;"  href="/wordofmouth" class="btn btn-warning btn-lg">Take a Look Around</a>
+                <h5 style="font-size: 35px;">>Show us what you've got.</h5>
+                <a style = "background-color: #ffdd77;color:black;"  href="/wordofmouth/create"class="btn btn-warning btn-lg">Create Your Own Recipes</a>
+                <h5 style="font-size: 35px;">>Join the family.</h5>
+                <a style = "background-color: #ffdd77;color:black;"  href="/accounts/google/login/?process=login" class="btn btn-warning btn-lg">Sign Up</a>
+            </div>
+        </div>
     </div>
 </html>

@@ -8,7 +8,7 @@
     {% include "navbar.html" %}
     <div style="text-align:left; margin-top:20px; margin-left:10%; margin-right:10%">
       {% if user.is_authenticated %}
-      <h1>Share your culinary genius <span style="color: #73bcf8">{{ user.username }}</span>.</h1>
+      <h1>Share your culinary genius <span style="color: #B3816E">{{ user.username }}</span>.</h1>
         <form action="{% url 'wordofmouth:new_recipe' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
           <div>
@@ -25,7 +25,7 @@
             <h3>Ingredients + Instructions.</h3>
             {{form.instructions}}
           </div>
-          <div style="margin-top:105px;">{% bootstrap_button "Share Recipe" button_type="submit" button_class="btn-primary" %}</div>
+          <div style="margin-top:105px;"><button style="background-color: #ffdd77;color:black;font-weight: bold;"class="btn" type="submit">Share Recipe</button></div>
       {% else %}
         <h1>Please log in if you want to make a recipe</h1>
         <a class="btn btn-primary" style="margin-top: 10px;"href="{% provider_login_url 'google' %}">Login with Google</a>
