@@ -1,6 +1,7 @@
 from urllib import request
 
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 from django.db import models
 from django.contrib import auth
 from django_quill.fields import QuillField
@@ -29,6 +30,8 @@ class Recipe(models.Model):
     pub_date = models.DateTimeField('date published')
     instructions = QuillField()
     picture = models.FileField(rename_file)
+    author = User.get_username()
+    
     
     
 
