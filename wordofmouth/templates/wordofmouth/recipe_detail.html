@@ -31,9 +31,6 @@
         <div style="font-size:18px; margin-top: 20px;">
           <p>{{ recipe.instructions.html | safe }}</p>
         </div>
-        <div style="text-align: center;">
-          <img style="height:120px"src="http://clipart-library.com/images/LcdjR55xi.png">
-        </div>
         <div style="margin-top:20px;margin-bottom: 20px;">
           {% include 'comments.html' with url=recipe.id %}
         </div>
