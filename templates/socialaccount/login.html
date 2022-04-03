@@ -10,15 +10,15 @@
 </div>
 {% else %}
 <div style="margin-top:30px;">
-<h1>{% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}</h1>
+<h1>{% blocktrans with provider.name as provider %}Sign In / Sign Up Via {{ provider }}{% endblocktrans %}</h1>
 
-<p>{% blocktrans with provider.name as provider %}You are about to sign in using a third party account from {{ provider }}.{% endblocktrans %}</p>
+<p>{% blocktrans with provider.name as provider %}You are about to sign in or sign up using a third party account from {{ provider }}.{% endblocktrans %}</p>
 </div>
 {% endif %}
 <div>
 <form method="post">
   {% csrf_token %}
-  <button class="btn btn-secondary" type="submit">{% trans "Continue" %}</button>
+  <button style="margin-top: 10px;background-color: #ffdd77;color:black;font-weight: bold;" class="btn btn-light" type="submit">{% trans "Continue" %}</button>
 </form>
 </div>
 {% endblock %}

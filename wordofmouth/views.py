@@ -1,6 +1,6 @@
 from django.urls import reverse
 from django.utils import timezone
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import Http404, HttpResponseRedirect
 from django.http import HttpResponse
 from .models import Recipe
@@ -42,6 +42,6 @@ def recipe_experiment(request):
 def new_recipe(request):
     r = Recipe(recipe_title=request.POST['recipe_title'], likes=0, pub_date=timezone.now(), instructions=request.POST['instructions'], picture=request.FILES['filename'], author=request.user.username)
     r.save()
-    return render(request, 'wordofmouth/new_recipe.html', {'recipe': r})
+    return redirect('/wordofmouth/recipe/'+str(r.pk))
 
 
