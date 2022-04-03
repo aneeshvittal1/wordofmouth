@@ -201,4 +201,3 @@ AWS_STORAGE_BUCKET_NAME = 'wordofmoutha9'
 AWS_QUERYSTRING_AUTH = False
 
 MEDIA_URL = 'https://wordofmoutha9.s3.us-east-1.amazonaws.com/media/'
-
