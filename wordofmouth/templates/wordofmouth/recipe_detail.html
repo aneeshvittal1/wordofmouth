@@ -7,7 +7,7 @@
 <html>
   <body>
     {% include "navbar.html" %}
-    <div class="card shadow" style="margin-top: 15px; margin-left:10%; margin-right:10%; width:auto; min-height:100vh">
+    <div class="card shadow" style="margin-top: 15px; margin-left:10%; margin-right:10%; margin-bottom:15px; width:auto; min-height:100vh">
       <div style="margin-left:30px;margin-right: 30px; margin-top:10px">
         <div class="d-flex bd-highlight mb-3" style="overflow:auto">
           <div class="me-auto p-2 bd-highlight">
@@ -30,6 +30,12 @@
         <h4 style="margin-top: 20px; color:#175676; font-weight: bold; ">By {{ recipe.author }}</h4>
         <div style="font-size:18px; margin-top: 20px;">
           <p>{{ recipe.instructions.html | safe }}</p>
+        </div>
+        <div style="text-align: center;">
+          <img style="height:120px"src="http://clipart-library.com/images/LcdjR55xi.png">
+        </div>
+        <div style="margin-top:20px;margin-bottom: 20px;">
+          {% include 'comments.html' with url=recipe.id %}
         </div>
       </div>
     </div>
