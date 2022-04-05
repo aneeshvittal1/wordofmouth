@@ -31,6 +31,7 @@ class Recipe(models.Model):
     instructions = QuillField()
     picture = models.FileField(rename_file)
     author = models.CharField(max_length=191)
+    description = models.TextField(max_length=300, null = True, blank= True)
 
     
     
@@ -39,3 +40,5 @@ class Recipe(models.Model):
     def __str__(self):
         return self.recipe_title
 
+    # def __str__(self):
+    #     return self.description
