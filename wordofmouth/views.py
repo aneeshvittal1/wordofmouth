@@ -34,6 +34,7 @@ def recipe_explore(request):
     context = {
         'recipe_list': recipe_list,
     }
+    print(recipe_list)
     return render(request, 'wordofmouth/recipe_explore.html', context)
 
 def recipe_experiment(request):
