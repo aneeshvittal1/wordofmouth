@@ -41,9 +41,19 @@ def recipe_experiment(request):
     return render(request, 'wordofmouth/recipe_experiment.html',{'form': RecipePostForm})
 
 def new_recipe(request):
-    r = Recipe(recipe_title=request.POST['recipe_title'],description=request.POST['description'], likes=0, pub_date=timezone.now(), instructions=request.POST['instructions'], picture=request.FILES['filename'], author=request.user.username)
-    r.save()
-    return redirect('/wordofmouth/recipe/'+str(r.pk))
+    form = RecipePostForm(request.POST)
+    print(form.errors)
+    if form.is_valid():
+        new_r = form.save(commit=False)
+        new_r.pub_date = timezone.now()
+        new_r.author = request.user.username
+        new_r.likes = 0
+        new_r.picture=request.FILES['filename']
+        new_r.save()
+        form.save_m2m()
+        return redirect('/wordofmouth/recipe/'+str(new_r.get_pk()))
+    else:
+        return HttpResponse('<h1>Something went wrong...</h1>')
 
    
 

@@ -31,7 +31,13 @@
               <h3>Ingredients + Instructions.</h3>
               {{form.instructions}}
             </div>
-            <div style="margin-top:105px;"><button style="background-color: #ffdd77;color:black;font-weight: bold;"class="btn" type="submit">Share Recipe</button></div>
+            <div style="margin-top:105px">
+              <h3>List Tags.</h3>
+              <h6>Separate the tags with commas!</h6>
+              <h6>ex: lunch, quick, pasta, vegetarian</h6>
+              <input type="text" data-role="tagsinput" class="form-control" name="tags">
+            </div>
+            <div style="margin-top:20px"><button style="background-color: #ffdd77;color:black;font-weight: bold;"class="btn" type="submit">Share Recipe</button></div>
         </div>
       </div>
       {% else %}

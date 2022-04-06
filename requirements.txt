@@ -9,3 +9,5 @@ whitenoise
 django-storages
 boto3
 django-quill-editor
+django-taggit
+djangorestframework

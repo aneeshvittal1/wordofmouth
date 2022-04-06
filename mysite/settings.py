@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'wordofmouth.apps.WordofmouthConfig',
     'django_quill',
     'storages',
+    'taggit',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -154,7 +156,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 5
+SITE_ID = 4
 
 QUILL_CONFIGS = {
     'default':{
@@ -201,3 +203,6 @@ AWS_STORAGE_BUCKET_NAME = 'wordofmoutha9'
 AWS_QUERYSTRING_AUTH = False
 
 MEDIA_URL = 'https://wordofmoutha9.s3.us-east-1.amazonaws.com/media/'
+
+#Taggit
+TAGGIT_CASE_INSENSITIVE = True
