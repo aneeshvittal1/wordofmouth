@@ -32,6 +32,8 @@ class Recipe(models.Model):
     picture = models.FileField(rename_file)
     author = models.CharField(max_length=191)
     description = models.TextField(max_length=300, null = True, blank= True)
+    is_forked = models.BooleanField(default=False)
+    forked_id = models.PositiveBigIntegerField(default=0)
 
     
     
