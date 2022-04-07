@@ -40,8 +40,17 @@ def recipe_explore(request):
 def recipe_experiment(request):
     return render(request, 'wordofmouth/recipe_experiment.html',{'form': RecipePostForm})
 
+
+def recipe_fork(request, fork):
+    context = {
+        'fork': fork,
+        'form': RecipePostForm,
+    }
+    return render(request, 'wordofmouth/recipe_fork.html', context)
+
+
 def new_recipe(request):
-    r = Recipe(recipe_title=request.POST['recipe_title'],description=request.POST['description'], likes=0, pub_date=timezone.now(), instructions=request.POST['instructions'], picture=request.FILES['filename'], author=request.user.username)
+    r = Recipe(recipe_title=request.POST['recipe_title'],description=request.POST['description'], likes=0, pub_date=timezone.now(), instructions=request.POST['instructions'], picture=request.FILES['filename'], author=request.user.username, is_forked=request.POST['is_forked'], forked_id=request.POST['forked_id'])
     r.save()
     return redirect('/wordofmouth/recipe/'+str(r.pk))
 
