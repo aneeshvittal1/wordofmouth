@@ -42,9 +42,10 @@ def recipe_experiment(request):
 
 
 def recipe_fork(request, fork):
+    og_recipe = Recipe.objects.get(pk=fork)
     context = {
         'fork': fork,
-        'form': RecipePostForm,
+        'form': RecipePostForm(instance=og_recipe),
     }
     return render(request, 'wordofmouth/recipe_fork.html', context)
 
