@@ -14,6 +14,8 @@
             <h1 style="color:#e16f62;font-size: 70px;">{{ recipe.recipe_title }}</h1>
           </div>
           <div class="p-2 bd-highlight" style="min-width: 60px;">
+
+            <a href="{ % url 'wordofmouth:favorites' %}" class="btn btn-outline-primary">Add to Favorites</a>
             <form action="{% url 'wordofmouth:recipe_detail' recipe.id %}" method="post" name="like" id="likeform">
               {% csrf_token%}
               <button style="margin-top: 25px;"type="submit" name="like" value="{{ recipe.id }}" class="btn btn-primary">

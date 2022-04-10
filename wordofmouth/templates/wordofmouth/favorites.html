@@ -1,0 +1,44 @@
+{% load socialaccount %}
+<html>
+    {% include "navbar.html" %}
+    <div style="text-align:center; margin-top: 8%;">
+        {% if fav_list %}
+        {% for recipe in fav_list %}
+        <div class="col-lg-4 col-md-6 mb-2 mt-4 p-2">
+
+            <div class="card shadow" style="border-radius: 1em;">
+              <div class="bg-image hover-overlay ripple" style="text-align: center;" data-mdb-ripple-color="light">
+                <img
+                  src="{{recipe.picture.url}}"
+                  class="img-fluid"
+                  onerror="this.style='display:none;'"
+                  style="border-radius: 1em 1em 0 0; width: 100%;height: 15vw;object-fit: cover;"
+                />
+                <a href="#!">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+              </div>
+              <div class="card-body">
+                <h5 class="{% url 'wordofmouth:recipe_detail' recipe.id %}">{{ recipe.recipe_title }}</h5>
+                {% if recipe.description != None %}
+                <p class="{% url 'wordofmouth:recipe_detail' recipe.id %}">{{ recipe.description }}</p>
+                {% endif %}
+                <a href="{% url 'wordofmouth:recipe_detail' recipe.id %}" style="background-color: #ffdd77;color:black;font-weight: 200; margin-top: 10px;" class="btn btn-light">Go To Recipe</a>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            var $grid = $('.grid').masonry({
+            });
+            $grid.imagesLoaded().progress( function() {
+            $grid.masonry('layout');});
+          </script>
+        {% endfor %}
+        {% else %}
+            <p>No recipes are available at the moment🥺</p>
+        {% endif %}
+    </div>
+        <p><a href="{% url 'wordofmouth:recipe_explore' %}">{{ "Return to explore page" }}</a></p>
+    </div>
+  </html>

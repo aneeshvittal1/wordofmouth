@@ -27,6 +27,7 @@ class Recipe(models.Model):
     
     recipe_title = models.CharField(max_length=200)
     likes = models.PositiveIntegerField(default=0)
+    favorites = models.ManyToManyField(User, related_name="favorite", default=None, blank=True)
     pub_date = models.DateTimeField('date published')
     instructions = QuillField()
     picture = models.FileField(rename_file)
