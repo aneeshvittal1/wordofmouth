@@ -45,7 +45,7 @@ def recipe_fork(request, fork):
     og_recipe = Recipe.objects.get(pk=fork)
     context = {
         'fork': fork,
-        'form': RecipePostForm(instance=og_recipe),
+        'form': RecipePostForm(initial={'recipe_title':og_recipe.recipe_title,'description':og_recipe.description,'instructions':og_recipe.instructions}),
     }
     return render(request, 'wordofmouth/recipe_fork.html', context)
 
