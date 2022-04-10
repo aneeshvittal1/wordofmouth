@@ -156,7 +156,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 4
+SITE_ID = 5
 
 QUILL_CONFIGS = {
     'default':{
@@ -166,12 +166,12 @@ QUILL_CONFIGS = {
             'toolbar': [
                 [
                     {'header': []},
-                    {'align': []},
+                    {'list':'ordered'},
+                    {'list':'bullet'},
                     'bold', 'italic', 'underline', 'strike', 'blockquote',
                     {'color': []},
                     {'background': []},
                 ],
-                ['code-block', 'link'],
                 ['clean'],
             ]
         }

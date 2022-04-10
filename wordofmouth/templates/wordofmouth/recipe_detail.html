@@ -31,6 +31,13 @@
         <div style="font-size:18px; margin-top: 20px;">
           <p>{{ recipe.instructions.html | safe }}</p>
         </div>
+        {% if recipe.tags %}
+          <div style="display:flex">
+            {% for tag in recipe.tags.names %}
+            <a style = "background-color: #ffdd77;color:black;height:30px; margin-right:10px" href="/wordofmouth/tags/{{tag}}" class="btn btn-light btn-sm">#{{tag}}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
         <div style="margin-top:20px;margin-bottom: 20px;">
           {% include 'comments.html' with url=recipe.id %}
         </div>

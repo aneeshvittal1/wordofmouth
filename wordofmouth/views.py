@@ -5,6 +5,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.http import HttpResponse
 from .models import Recipe
 from .forms import RecipePostForm
+from taggit.models import Tag
 
 
 def index(request):
@@ -30,12 +31,26 @@ def recipe_detail(request, recipe_id):
     return render(request, 'wordofmouth/recipe_detail.html', {'recipe': recipe})
 
 def recipe_explore(request):
-    recipe_list = Recipe.objects.all()
+    recipe_list = reversed(Recipe.objects.all())
+    tags_list = Recipe.tags.most_common()[:15]
     context = {
         'recipe_list': recipe_list,
+        'tags_list': tags_list,
     }
-    print(recipe_list)
     return render(request, 'wordofmouth/recipe_explore.html', context)
+    
+def recipe_explore_tags(request, tag):
+    try:
+        recipes = Recipe.objects.filter(tags__name__in=[tag])
+        num_results = len(recipes)
+    except:
+        raise Http404("Error: Invalid tag")
+    context = {
+        'recipe_list': recipes,
+        'tag': tag,
+        'num_results':num_results
+    }
+    return render(request, 'wordofmouth/recipe_explore_tags.html', context)
 
 def recipe_experiment(request):
     return render(request, 'wordofmouth/recipe_experiment.html',{'form': RecipePostForm})

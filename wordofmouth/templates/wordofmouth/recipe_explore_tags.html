@@ -1,38 +1,14 @@
 <html>
     {% include "navbar.html" %}
-    <!-- Background image -->
-    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
-    <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.js"></script>
-    <div
-    class="bg-image justify-content-center align-items-center"
-    style="
-    background-image: url('https://candidkay.files.wordpress.com/2015/05/fotolia_72196084_subscription_monthly_m.jpg');
-    height: 60vh;
-    position:relative;
-    "
-    >
-    <div style="padding-left:10%;padding-top: 14%;">
-      <h1 style="font-size: 60px;"class="text-white">Witness a world full of recipes.</h1>
-      <h2 class="text-white">What are we cooking today?</h2>
-    </div>
-    </div>
-    <!-- Background image -->
-    {% if tags_list %}
-          <div class="card shadow"style="display:flex; margin-right: 30px; margin-left: 30px;margin-top:30px; border-radius:1rem;">
-            <div style="display:flex; margin: 15px;">
-              <h5 style="margin-right:10px;font-weight: bold;">Trending 📈</h5>
-              {% for tag in tags_list %}
-              <a style="background-color: #e16f62;color:white;height:30px; margin-right:10px" class="btn btn-light btn-sm" href="/wordofmouth/tags/{{tag}}">#{{tag}}</a>
-              {% endfor %}
-            </div>
-          </div>
-    {% endif %}
     {% if recipe_list %}
-    <div class="row grid" data-masonry='{"percentPosition": true }' style="margin-right: 30px; margin-left: 30px"> 
-
+    <div class="row grid" data-masonry='{"percentPosition": true }' style="margin-right: 30px; margin-left: 30px; margin-top: 20px;"> 
+        <div style="display:flex">
+            <h1 style="font-size: 70;color:#e16f62">#{{tag}}</h1>
+            <h5 style="margin-top: 40px; margin-left: 20px;">➡️ {{num_results}} Recipes </h5>
+        </div>
+        <div style="height:4px;width:100%;background-color: #ffdd77;margin-top: 5px;"></div>
         {% for recipe in recipe_list %}
         <div class="col-lg-4 col-md-6 mb-2 mt-4 p-2">
-
             <div class="card shadow" style="border-radius: 1em;">
               <div class="bg-image hover-overlay ripple" style="text-align: center;" data-mdb-ripple-color="light">
                 <img
