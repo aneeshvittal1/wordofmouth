@@ -13,11 +13,11 @@
           <h1>Share your culinary genius <span style="color: #B3816E">{{ user.username }}</span>.</h1>
           <form action="{% url 'wordofmouth:new_recipe' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
-            <input type="hidden" name="is_forked" value="0" />
-            <input type="hidden" name="forked_id" value="0" />
+            <input type="hidden" name="is_forked" value="1" />
+            <input type="hidden" name="forked_id" value="{{ fork }}" />
             <div>
               <h3>Your Recipe's Title. </h3>   
-              <input type="title" class="form-control" id="recipe_title" name="recipe_title" placeholder="Title">
+              {% bootstrap_field form.recipe_title show_label=False %}
             </div>
             <div style="margin-top:20px">
               <h3>Main Picture.</h3>
@@ -25,9 +25,9 @@
                 <input class="form-control" type="file" accept=".jpg,.jpeg,.png" id="filename" name="filename">
               </div>
             </div>
-            <div style="margin-top:20px">
+            <div style="margin-top:20px;">
               <h3>Brief Description.</h3>
-              <textarea class="form-control" id="description" rows="3" name="description" placeholder="Description" maxlength="280"></textarea>
+              {% bootstrap_field form.description show_label=False %}
             </div>
             <div style="margin-top:20px;height:50vh">
               <h3>Ingredients + Instructions.</h3>
