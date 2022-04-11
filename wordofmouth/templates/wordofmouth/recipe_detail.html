@@ -11,9 +11,14 @@
       <div style="margin-left:30px;margin-right: 30px; margin-top:10px">
         <div class="d-flex bd-highlight mb-3" style="overflow:auto">
           <div class="me-auto p-2 bd-highlight">
-            <h1 style="color:#e16f62;font-size: 70px;">{{ recipe.recipe_title }}</h1>
+            <h1 style="color:#e16f62;font-size: 70px;margin-bottom: -10;">{{ recipe.recipe_title }}</h1>
+            {% if recipe.is_forked %}
+              <div style="margin-top:10px;">
+                <h6>🍴 This recipe is forked. See the original recipe <a href="{% url 'wordofmouth:recipe_detail' recipe.forked_id %}">{{ "here." }}</a></h6>
+              </div>
+            {% endif %}
           </div>
-          <div class="p-2 bd-highlight" style="min-width: 60px;">
+          <div class="p-2 bd-highlight" style="min-width: 60px; display: flex;">
             <form action="{% url 'wordofmouth:recipe_detail' recipe.id %}" method="post" name="like" id="likeform">
               {% csrf_token%}
               <button style="margin-top: 25px;"type="submit" name="like" value="{{ recipe.id }}" class="btn btn-primary">
@@ -23,23 +28,26 @@
             </form>
             <!-- FORK BUTTON -->
             <form action="{% url 'wordofmouth:recipe_fork' recipe.id %}">
-              <input type="submit" value="Fork" />
+              <button style="background-color: #B3816E;color:white;font-weight: bold;margin-top: 25px;margin-left:10px" class="btn btn-light btn-sm" type="submit" value="Fork">Fork</button>
             </form>
             <!-- FORK BUTTON -->
           </div>
         </div>
-        <div style="height:10px;background-color: #ffdd77; margin-top: -23px;"></div>
+        <div style="height:10px;background-color: #ffdd77; margin-top: -25px;"></div>
         <div style="text-align: left;">
           <img style="max-height:50vh; max-width: 68vw; margin-top:20px; text-align: center;"src ="{{recipe.picture.url}}">
         </div>
         <h4 style="margin-top: 20px; color:#175676; font-weight: bold; ">By {{ recipe.author }}</h4>
+        <h6 style="font-weight: bold;">{{recipe.pub_date}}</h6>
         <div style="font-size:18px; margin-top: 20px;">
           <p>{{ recipe.instructions.html | safe }}</p>
         </div>
-        {% if recipe.is_forked %}
-        <div>
-          <p> This recipe is forked. See the original recipe <a href="{% url 'wordofmouth:recipe_detail' recipe.forked_id %}">{{ "here." }}</a></p>
-        </div>
+        {% if recipe.tags %}
+          <div style="display:flex">
+            {% for tag in recipe.tags.names %}
+            <a style = "background-color: #ffdd77;color:black;height:30px; margin-right:10px" href="/wordofmouth/tags/{{tag}}" class="btn btn-light btn-sm">#{{tag}}</a>
+            {% endfor %}
+          </div>
         {% endif %}
         <div style="margin-top:20px;margin-bottom: 20px;">
           {% include 'comments.html' with url=recipe.id %}
