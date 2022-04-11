@@ -32,7 +32,7 @@ def recipe_detail(request, recipe_id):
 
 def recipe_explore(request):
     recipe_list = reversed(Recipe.objects.all())
-    tags_list = Recipe.tags.most_common()[:15]
+    tags_list = Recipe.tags.most_common()[:14]
     context = {
         'recipe_list': recipe_list,
         'tags_list': tags_list,
