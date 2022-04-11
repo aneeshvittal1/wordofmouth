@@ -14,7 +14,7 @@
             <h1 style="color:#e16f62;font-size: 70px;">{{ recipe.recipe_title }}</h1>
           </div>
           <div class="p-2 bd-highlight" style="min-width: 60px;">
-
+            {% if request.user.is_authenticated %}
              <div id="favorite-section">
                {% if is_favorite %}
               <a href="{% url 'wordofmouth:favorite_recipe' recipe.id%}">
@@ -26,13 +26,24 @@
               </a>
               {% endif %}
           </div>
-            <form action="{% url 'wordofmouth:recipe_detail' recipe.id %}" method="post" name="like" id="likeform">
+              {% endif %}
+              {% if request.user.is_authenticated %}
+            <form action="{% url 'wordofmouth:like_recipe' %}" method="post" name="like" id="likeform">
               {% csrf_token%}
-              <button style="margin-top: 25px;"type="submit" name="like" value="{{ recipe.id }}" class="btn btn-primary">
-                <i class="bi bi-hand-thumbs-up-fill"></i>
-              </button>
-                <p>{{ recipe.likes }} likes</p>
+                {% if is_liked %}
+                <button type="submit" name="recipe_id" value="{{ recipe.id}}" class="btn btn-primary">
+                     <i class="bi bi-hand-thumbs-up-fill"></i>
+                    {{ total_likes }}
+                </button>
+                {% else %}
+                <button type="submit" name="recipe_id" value="{{ recipe.id}}" class="btn btn-primary">
+                     <i class="bi bi-hand-thumbs-up"></i>
+                    {{ total_likes }}
+                </button>
+                {% endif %}
+
             </form>
+              {% endif %}
           </div>
         </div>
 

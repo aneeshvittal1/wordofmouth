@@ -25,20 +25,38 @@ def recipe_detail(request, recipe_id):
         raise Http404("Recipe does not exist")
     #recipe = get_object_or_404(Recipe, pk=recipe_id)
 
-    if request.method == 'POST':
-        recipe.likes += 1
-        recipe.save()
+    # if request.method == 'POST':
+    #     recipe.likes += 1
+    #     recipe.save()
 
+    is_liked = False
+    if recipe.likes.filter(id=request.user.id).exists():
+        is_liked = True
     is_favorite = False
     if recipe.favorites.filter(id=request.user.id):
         is_favorite = True
 
     context = {
         'recipe': recipe,
+        'is_liked': is_liked,
+        'total_likes': recipe.total_likes(),
         'is_favorite': is_favorite,
     }
 
     return render(request, 'wordofmouth/recipe_detail.html', context)
+
+
+def like_recipe(request):
+    recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
+    is_liked = False
+    if recipe.likes.filter(id=request.user.id).exists():
+        recipe.likes.remove(request.user)
+        is_liked = False
+    else:
+        recipe.likes.add(request.user)
+        is_liked = True
+    return HttpResponseRedirect(reverse('wordofmouth:recipe_detail', args=(recipe.id,)))
+
 
 def recipe_explore(request):
     recipe_list = Recipe.objects.all()
