@@ -1,9 +1,9 @@
-{% load socialaccount %}
 <html>
     {% include "navbar.html" %}
-    <div style="text-align:center; margin-top: 8%;">
-        {% if fav_list %}
-        {% for recipe in fav_list %}
+    {% if favorite_recipes %}
+    <div class="row grid" data-masonry='{"percentPosition": true }' style="margin-right: 30px; margin-left: 30px">
+
+        {% for recipe in favorite_recipes %}
         <div class="col-lg-4 col-md-6 mb-2 mt-4 p-2">
 
             <div class="card shadow" style="border-radius: 1em;">
@@ -35,10 +35,9 @@
             $grid.masonry('layout');});
           </script>
         {% endfor %}
+
         {% else %}
-            <p>No recipes are available at the moment🥺</p>
+            <p style="text-align:center;">Your Favorites are Waiting to be Found!</p>
         {% endif %}
     </div>
-        <p><a href="{% url 'wordofmouth:recipe_explore' %}">{{ "Return to explore page" }}</a></p>
-    </div>
-  </html>
+</html>

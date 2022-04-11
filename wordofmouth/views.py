@@ -17,6 +17,7 @@ def index(request):
 
 
 def recipe_detail(request, recipe_id):
+
     try:
         recipe = Recipe.objects.get(pk=recipe_id)
         # recipe = Recipe.objects.all()[recipe_id-1]
@@ -28,7 +29,16 @@ def recipe_detail(request, recipe_id):
         recipe.likes += 1
         recipe.save()
 
-    return render(request, 'wordofmouth/recipe_detail.html', {'recipe': recipe})
+    is_favorite = False
+    if recipe.favorites.filter(id=request.user.id):
+        is_favorite = True
+
+    context = {
+        'recipe': recipe,
+        'is_favorite': is_favorite,
+    }
+
+    return render(request, 'wordofmouth/recipe_detail.html', context)
 
 def recipe_explore(request):
     recipe_list = Recipe.objects.all()
@@ -47,27 +57,28 @@ def new_recipe(request):
     return redirect('/wordofmouth/recipe/'+str(r.pk))
 
 
-@login_required
-def favorite_add(request, recipe_id):
+def favorite_list(request):
+    user = request.user
+    favorite_recipes = user.favorite.all()
+    context = {
+        'favorite_recipes': favorite_recipes,
+    }
+
+    return render(request, 'wordofmouth/favorites.html', context)
+
+
+
+def favorite_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
-    fav_list = []
-    if recipe.favorites.filter(id=request.user.recipe_id).exists():
+    if recipe.favorites.filter(id=request.user.id).exists():
         recipe.favorites.remove(request.user)
-        fav_list.remove(recipe)
     else:
         recipe.favorites.add(request.user)
-        fav_list.append(recipe)
-    context = {
-        'fav_list': fav_list
-    }
-    print(fav_list)
-    return render(request, 'wordofmouth/favorites.html', {'context': context})
+
+    return HttpResponseRedirect(reverse('wordofmouth:recipe_detail', args=(recipe.id,)))
 
 
-@login_required
-def favorite_list(request):
-    new = Recipe.objects.filter(favorites=request.user)
-    return render(request, 'wordofmouth/favorites.html', {'new': new})
+
 
    
 
