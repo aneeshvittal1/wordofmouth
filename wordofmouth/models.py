@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.contrib import auth
 from django_quill.fields import QuillField
+from taggit.managers import TaggableManager
 import os
 
 # Create your models here.
@@ -30,9 +31,12 @@ class Recipe(models.Model):
     favorites = models.ManyToManyField(User, related_name="favorite", default=None, blank=True)
     pub_date = models.DateTimeField('date published')
     instructions = QuillField()
-    picture = models.FileField(rename_file)
+    picture = models.FileField(rename_file,null = True, blank= True)
     author = models.CharField(max_length=191)
     description = models.TextField(max_length=300, null = True, blank= True)
+    tags = TaggableManager()
+    is_forked = models.PositiveIntegerField(default=0)
+    forked_id = models.PositiveIntegerField(default=0)
 
     
     
