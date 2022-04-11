@@ -11,46 +11,43 @@
       <div style="margin-left:30px;margin-right: 30px; margin-top:10px">
         <div class="d-flex bd-highlight mb-3" style="overflow:auto">
           <div class="me-auto p-2 bd-highlight">
-            <h1 style="color:#e16f62;font-size: 70px;margin-bottom: -10;">{{ recipe.recipe_title }}</h1>
+            <h1 style="color:#e16f62;font-size: 70px;">{{ recipe.recipe_title }}</h1>
             {% if recipe.is_forked %}
-              <div style="margin-top:10px;">
+              <div style="margin-top:5px;margin-bottom: 15px;">
                 <h6>🍴 This recipe is forked. See the original recipe <a href="{% url 'wordofmouth:recipe_detail' recipe.forked_id %}">{{ "here." }}</a></h6>
               </div>
             {% endif %}
           </div>
-          <div class="p-2 bd-highlight" style="min-width: 60px;">
+          <div class="p-2 bd-highlight" style="display:flex">
             {% if request.user.is_authenticated %}
-             <div id="favorite-section">
+            <div id="favorite-section" style="margin-top:25px">
                {% if is_favorite %}
               <a href="{% url 'wordofmouth:favorite_recipe' recipe.id%}">
                 <i class="bi-bookmark-heart-fill btn-lg"></i>
               </a>
-             {% else %}
+              {% else %}
                 <a href="{% url 'wordofmouth:favorite_recipe' recipe.id%}">
                 <i class="bi-bookmark-heart btn-lg"></i>
-              </a>
+                </a>
               {% endif %}
-          </div>
-              {% endif %}
+            </div>
+            {% endif %}
               {% if request.user.is_authenticated %}
-            <form action="{% url 'wordofmouth:like_recipe' %}" method="post" name="like" id="likeform">
+            <form style="margin-top:25px;" action="{% url 'wordofmouth:like_recipe' %}" method="post" name="like" id="likeform">
               {% csrf_token%}
                 {% if is_liked %}
-                <button type="submit" name="recipe_id" value="{{ recipe.id}}" class="btn btn-primary">
+                <button type="submit" name="recipe_id" value="{{ recipe.id}}" class="btn btn-primary btn-sm">
                      <i class="bi bi-hand-thumbs-up-fill"></i>
                     {{ total_likes }}
                 </button>
                 {% else %}
-                <button type="submit" name="recipe_id" value="{{ recipe.id}}" class="btn btn-primary">
+                <button type="submit" name="recipe_id" value="{{ recipe.id}}" class="btn btn-primary btn-sm">
                      <i class="bi bi-hand-thumbs-up"></i>
                     {{ total_likes }}
                 </button>
                 {% endif %}
-
             </form>
               {% endif %}
-          </div>
-        </div>
             <!-- FORK BUTTON -->
             <form action="{% url 'wordofmouth:recipe_fork' recipe.id %}">
               <button style="background-color: #B3816E;color:white;font-weight: bold;margin-top: 25px;margin-left:10px" class="btn btn-light btn-sm" type="submit" value="Fork">Fork</button>
