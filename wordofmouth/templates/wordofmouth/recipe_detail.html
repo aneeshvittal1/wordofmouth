@@ -49,9 +49,11 @@
             </form>
               {% endif %}
             <!-- FORK BUTTON -->
+           {% if request.user.is_authenticated %}
             <form action="{% url 'wordofmouth:recipe_fork' recipe.id %}">
               <button style="background-color: #B3816E;color:white;font-weight: bold;margin-top: 25px;margin-left:10px" class="btn btn-light btn-sm" type="submit" value="Fork">Fork</button>
             </form>
+           {% endif %}
             <!-- FORK BUTTON -->
           </div>
         </div>
