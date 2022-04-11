@@ -45,6 +45,13 @@ def recipe_detail(request, recipe_id):
 
     return render(request, 'wordofmouth/recipe_detail.html', context)
 
+"""
+*  REFERENCES
+*  Title: <Learn Django - The Easy Way | Creating a Like/Dislike Button | Tutorial - 37>
+*  Author: <Abhishek Verma>
+*  Date: <April 4, 2018>
+*  URL: <https://www.youtube.com/watch?v=VoWw1Y5qqt8>
+"""
 
 def like_recipe(request):
     recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
@@ -74,6 +81,14 @@ def new_recipe(request):
     r.save()
     return redirect('/wordofmouth/recipe/'+str(r.pk))
 
+
+"""
+*  REFERENCES
+*  Title: <Learn Django - The Easy Way | Adding Posts to Favourites | Tutorial - 51>
+*  Author: <Abhishek Verma>
+*  Date: <April 4, 2018>
+*  URL: <https://www.youtube.com/watch?v=1XiJvIuvqhs>
+"""
 
 def favorite_list(request):
     user = request.user

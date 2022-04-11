@@ -154,7 +154,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 6
+SITE_ID = 5
 
 QUILL_CONFIGS = {
     'default':{
