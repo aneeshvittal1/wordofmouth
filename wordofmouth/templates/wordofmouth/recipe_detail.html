@@ -18,14 +18,39 @@
               </div>
             {% endif %}
           </div>
-          <div class="p-2 bd-highlight" style="min-width: 60px; display: flex;">
-            <form action="{% url 'wordofmouth:recipe_detail' recipe.id %}" method="post" name="like" id="likeform">
+          <div class="p-2 bd-highlight" style="min-width: 60px;">
+            {% if request.user.is_authenticated %}
+             <div id="favorite-section">
+               {% if is_favorite %}
+              <a href="{% url 'wordofmouth:favorite_recipe' recipe.id%}">
+                <i class="bi-bookmark-heart-fill btn-lg"></i>
+              </a>
+             {% else %}
+                <a href="{% url 'wordofmouth:favorite_recipe' recipe.id%}">
+                <i class="bi-bookmark-heart btn-lg"></i>
+              </a>
+              {% endif %}
+          </div>
+              {% endif %}
+              {% if request.user.is_authenticated %}
+            <form action="{% url 'wordofmouth:like_recipe' %}" method="post" name="like" id="likeform">
               {% csrf_token%}
-              <button style="margin-top: 25px;"type="submit" name="like" value="{{ recipe.id }}" class="btn btn-primary">
-                <i class="bi bi-hand-thumbs-up-fill"></i>
-              </button>
-                <p>{{ recipe.likes }} likes</p>
+                {% if is_liked %}
+                <button type="submit" name="recipe_id" value="{{ recipe.id}}" class="btn btn-primary">
+                     <i class="bi bi-hand-thumbs-up-fill"></i>
+                    {{ total_likes }}
+                </button>
+                {% else %}
+                <button type="submit" name="recipe_id" value="{{ recipe.id}}" class="btn btn-primary">
+                     <i class="bi bi-hand-thumbs-up"></i>
+                    {{ total_likes }}
+                </button>
+                {% endif %}
+
             </form>
+              {% endif %}
+          </div>
+        </div>
             <!-- FORK BUTTON -->
             <form action="{% url 'wordofmouth:recipe_fork' recipe.id %}">
               <button style="background-color: #B3816E;color:white;font-weight: bold;margin-top: 25px;margin-left:10px" class="btn btn-light btn-sm" type="submit" value="Fork">Fork</button>
@@ -34,6 +59,7 @@
           </div>
         </div>
         <div style="height:10px;background-color: #ffdd77; margin-top: -25px;"></div>
+
         <div style="text-align: left;">
           <img style="max-height:50vh; max-width: 68vw; margin-top:20px; text-align: center;"src ="{{recipe.picture.url}}">
         </div>

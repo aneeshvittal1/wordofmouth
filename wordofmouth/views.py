@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.utils import timezone
 from django.shortcuts import get_object_or_404, render, redirect
@@ -17,6 +18,7 @@ def index(request):
 
 
 def recipe_detail(request, recipe_id):
+
     try:
         recipe = Recipe.objects.get(pk=recipe_id)
         # recipe = Recipe.objects.all()[recipe_id-1]
@@ -24,11 +26,45 @@ def recipe_detail(request, recipe_id):
         raise Http404("Recipe does not exist")
     #recipe = get_object_or_404(Recipe, pk=recipe_id)
 
-    if request.method == 'POST':
-        recipe.likes += 1
-        recipe.save()
+    # if request.method == 'POST':
+    #     recipe.likes += 1
+    #     recipe.save()
 
-    return render(request, 'wordofmouth/recipe_detail.html', {'recipe': recipe})
+    is_liked = False
+    if recipe.likes.filter(id=request.user.id).exists():
+        is_liked = True
+    is_favorite = False
+    if recipe.favorites.filter(id=request.user.id):
+        is_favorite = True
+
+    context = {
+        'recipe': recipe,
+        'is_liked': is_liked,
+        'total_likes': recipe.total_likes(),
+        'is_favorite': is_favorite,
+    }
+
+    return render(request, 'wordofmouth/recipe_detail.html', context)
+
+"""
+*  REFERENCES
+*  Title: <Learn Django - The Easy Way | Creating a Like/Dislike Button | Tutorial - 37>
+*  Author: <Abhishek Verma>
+*  Date: <April 4, 2018>
+*  URL: <https://www.youtube.com/watch?v=VoWw1Y5qqt8>
+"""
+
+def like_recipe(request):
+    recipe = get_object_or_404(Recipe, id=request.POST.get('recipe_id'))
+    is_liked = False
+    if recipe.likes.filter(id=request.user.id).exists():
+        recipe.likes.remove(request.user)
+        is_liked = False
+    else:
+        recipe.likes.add(request.user)
+        is_liked = True
+    return HttpResponseRedirect(reverse('wordofmouth:recipe_detail', args=(recipe.id,)))
+
 
 def recipe_explore(request):
     recipe_list = reversed(Recipe.objects.all())
@@ -79,6 +115,38 @@ def new_recipe(request):
         return redirect('/wordofmouth/recipe/'+str(new_r.get_pk()))
     else:
         return HttpResponse('<h1>Something went wrong...</h1>')
+
+
+"""
+*  REFERENCES
+*  Title: <Learn Django - The Easy Way | Adding Posts to Favourites | Tutorial - 51>
+*  Author: <Abhishek Verma>
+*  Date: <April 4, 2018>
+*  URL: <https://www.youtube.com/watch?v=1XiJvIuvqhs>
+"""
+
+def favorite_list(request):
+    user = request.user
+    favorite_recipes = user.favorite.all()
+    context = {
+        'favorite_recipes': favorite_recipes,
+    }
+
+    return render(request, 'wordofmouth/favorites.html', context)
+
+
+
+def favorite_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    if recipe.favorites.filter(id=request.user.id).exists():
+        recipe.favorites.remove(request.user)
+    else:
+        recipe.favorites.add(request.user)
+
+    return HttpResponseRedirect(reverse('wordofmouth:recipe_detail', args=(recipe.id,)))
+
+
+
 
    
 
