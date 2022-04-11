@@ -55,9 +55,19 @@ def recipe_explore_tags(request, tag):
 def recipe_experiment(request):
     return render(request, 'wordofmouth/recipe_experiment.html',{'form': RecipePostForm})
 
+
+def recipe_fork(request, fork):
+    og_recipe = Recipe.objects.get(pk=fork)
+    context = {
+        'fork': fork,
+        'form': RecipePostForm(initial={'recipe_title':og_recipe.recipe_title,'description':og_recipe.description,'instructions':og_recipe.instructions}),
+    }
+    return render(request, 'wordofmouth/recipe_fork.html', context)
+
+
 def new_recipe(request):
     form = RecipePostForm(request.POST)
-    print(form.errors)
+    print(request.POST)
     if form.is_valid():
         new_r = form.save(commit=False)
         new_r.pub_date = timezone.now()
