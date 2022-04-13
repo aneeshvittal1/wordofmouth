@@ -108,7 +108,6 @@ def new_recipe(request):
         new_r = form.save(commit=False)
         new_r.pub_date = timezone.now()
         new_r.author = request.user.username
-        new_r.likes = 0
         new_r.picture=request.FILES['filename']
         new_r.save()
         form.save_m2m()
