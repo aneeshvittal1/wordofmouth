@@ -19,19 +19,6 @@
             {% endif %}
           </div>
           <div class="p-2 bd-highlight" style="display:flex">
-            {% if request.user.is_authenticated %}
-            <div id="favorite-section" style="margin-top:25px">
-               {% if is_favorite %}
-              <a href="{% url 'wordofmouth:favorite_recipe' recipe.id%}">
-                <i class="bi-bookmark-heart-fill btn-lg"></i>
-              </a>
-              {% else %}
-                <a href="{% url 'wordofmouth:favorite_recipe' recipe.id%}">
-                <i class="bi-bookmark-heart btn-lg"></i>
-                </a>
-              {% endif %}
-            </div>
-            {% endif %}
               {% if request.user.is_authenticated %}
             <form style="margin-top:25px;" action="{% url 'wordofmouth:like_recipe' %}" method="post" name="like" id="likeform">
               {% csrf_token%}
@@ -55,6 +42,19 @@
             </form>
            {% endif %}
             <!-- FORK BUTTON -->
+            {% if request.user.is_authenticated %}
+            <div id="favorite-section" style="margin-top:25px">
+               {% if is_favorite %}
+              <a href="{% url 'wordofmouth:favorite_recipe' recipe.id%}">
+                <i class="bi-suit-heart-fill btn-lg" style="color: #E16F62"></i>
+              </a>
+              {% else %}
+                <a href="{% url 'wordofmouth:favorite_recipe' recipe.id%}">
+                <i class="bi-suit-heart btn-lg" style="color: #E16F62"></i>
+                </a>
+              {% endif %}
+            </div>
+            {% endif %}
           </div>
         </div>
         <div style="height:10px;background-color: #ffdd77; margin-top: -25px;"></div>
