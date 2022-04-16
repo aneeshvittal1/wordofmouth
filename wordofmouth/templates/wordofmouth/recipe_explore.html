@@ -33,7 +33,7 @@
         {% for recipe in recipe_list %}
         <div class="col-lg-4 col-md-6 mb-2 mt-4 p-2">
 
-            <div class="card shadow" style="border-radius: 1em;">
+            <div id="recipe_card" class="card shadow" style="border-radius: 1em;">
               <div class="bg-image hover-overlay ripple" style="text-align: center;" data-mdb-ripple-color="light">
                 <img
                   src="{{recipe.picture.url}}"
@@ -67,4 +67,17 @@
             <p>No recipes are available at the moment🥺</p>
         {% endif %}
     </div>
+    <style>
+      /* This is to make the cards hover on pointer */
+      /*Credits to https://ordinarycoders.com/blog/article/codepen-bootstrap-card-hovers*/ 
+      #recipe_card{
+      box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+      }
+  
+    #recipe_card:hover{
+      transform: scale(1.015);
+      box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    }
+    </style>
 </html>

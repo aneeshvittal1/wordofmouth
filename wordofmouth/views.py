@@ -89,7 +89,7 @@ def recipe_explore_tags(request, tag):
     return render(request, 'wordofmouth/recipe_explore_tags.html', context)
 
 def recipe_experiment(request):
-    return render(request, 'wordofmouth/recipe_experiment.html',{'form': RecipePostForm})
+    return render(request, 'wordofmouth/recipe_experiment.html',{'form': RecipePostForm,'error':False})
 
 
 def recipe_fork(request, fork):
@@ -103,7 +103,6 @@ def recipe_fork(request, fork):
 
 def new_recipe(request):
     form = RecipePostForm(request.POST)
-    print(request.POST)
     if form.is_valid():
         new_r = form.save(commit=False)
         new_r.pub_date = timezone.now()
@@ -113,7 +112,8 @@ def new_recipe(request):
         form.save_m2m()
         return redirect('/wordofmouth/recipe/'+str(new_r.get_pk()))
     else:
-        return HttpResponse('<h1>Something went wrong...</h1>')
+        print("Error!")
+        return render(request, 'wordofmouth/recipe_experiment.html',{'form': form,'error':True})
 
 
 """
