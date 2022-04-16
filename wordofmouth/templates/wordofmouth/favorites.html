@@ -37,7 +37,10 @@
         {% endfor %}
 
         {% else %}
-            <p style="text-align:center;">Your Favorites are Waiting to be Found!</p>
+        <div style="text-align:center; margin-top: 18%;">
+            <p style="font-size:24px;" >Your Favorites are Waiting to be Found!</p>
+            <p><a style="font-size:18px;" href="{% url 'wordofmouth:recipe_explore' %}">{{ "Check Out the Explore Page" }}</a></p>
+        </div>
         {% endif %}
     </div>
 </html>
