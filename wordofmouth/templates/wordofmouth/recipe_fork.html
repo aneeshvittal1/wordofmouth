@@ -40,7 +40,28 @@ href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.cs
             </div>
             <div style="margin-top:20px;height:50vh">
               <div style="display:flex; flex-direction: row;">
-                <h3>Ingredients + Instructions.</h3>
+                <h3>Ingredients.</h3>
+                <a style=" margin-bottom:10px;" data-bs-placement="right" class="btn bi bi-info-circle-fill" type="button" data-bs-toggle="popover" title="How Do I Use This Fancy Text Box To Write My Recipe?" data-bs-html="true" 
+                data-bs-content="<p>Good question! Both the Ingredients and Instructions section use a rich text editor.  This gives you the freedom to customize the format of your text as you please.  We'll explain how each of the buttons on the toolbar work from left to right:</p>
+                <ol>
+                  <li>Change text to a header/body styling.</li>
+                  <li>List items using number</li>
+                  <li>List items using a bullet point</li>
+                  <li>Bold text</li>
+                  <li>Indent text</li>
+                  <li>Underline text</li>
+                  <li>Strikethrough text</li>
+                  <li>Add quote</li>
+                  <li>Font color</li>
+                  <li>Highlight text</li>
+                  <li>Clear editor</li>
+                </ol>" ></a>
+              </div>
+              {{form.ingredients}}
+            </div>
+            <div style="margin-top:120px;height:50vh">
+              <div style="display:flex; flex-direction: row;">
+                <h3>Instructions.</h3>
                 <a style=" margin-bottom:10px;" data-bs-placement="right" class="btn bi bi-info-circle-fill" type="button" data-bs-toggle="popover" title="How Do I Use This Fancy Text Box To Write My Recipe?" data-bs-html="true" 
                 data-bs-content="<p>Good question! Both the Ingredients and Instructions section use a rich text editor.  This gives you the freedom to customize the format of your text as you please.  We'll explain how each of the buttons on the toolbar work from left to right:</p>
                 <ol>

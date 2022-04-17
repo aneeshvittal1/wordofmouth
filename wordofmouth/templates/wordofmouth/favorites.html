@@ -1,8 +1,9 @@
 <html>
     {% include "navbar.html" %}
     {% if favorite_recipes %}
-    <div class="row grid" data-masonry='{"percentPosition": true }' style="margin-right: 30px; margin-left: 30px">
-
+    <div class="row grid" data-masonry='{"percentPosition": true }' style="margin-right: 30px; margin-left: 30px;margin-top: 20px;">
+      <h1 style="font-size: 70;color:#e16f62">Favorites 💖</h1>
+      <div style="height:4px;width:100%;background-color: #ffdd77;margin-top: 5px;"></div>
         {% for recipe in favorite_recipes %}
         <div class="col-lg-4 col-md-6 mb-2 mt-4 p-2">
 
@@ -37,7 +38,27 @@
         {% endfor %}
 
         {% else %}
-            <p style="text-align:center;">Your Favorites are Waiting to be Found!</p>
+        <div style="text-align: left; margin-top: 16%;margin-left: 38vw;">
+          <h1>🍎🍜🌕</h1>
+          <p style="font-size:20px">Cream-colored ponies and crisp apple strudels<br>
+            Doorbells and sleigh bells and schnitzel with noodles<br>
+            Wild geese that fly with the moon on their wings<br>
+            These are a few of my favorite things</p>
+          <a class="btn btn-light" data-bs-placement="right" style="background-color: #ffdd77;color:black;font-weight: bold; margin-top: 10px;" href="/wordofmouth">Find Your Favorite Things</a>
+        </div>
         {% endif %}
     </div>
 </html>
+<style>
+  /* This is to make the cards hover on pointer */
+  /*Credits to https://ordinarycoders.com/blog/article/codepen-bootstrap-card-hovers*/ 
+  .card{
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+  transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+  }
+
+.card:hover{
+  transform: scale(1.015);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+</style>
