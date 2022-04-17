@@ -1,0 +1,25 @@
+<div style="margin-top: 50px;margin-bottom:10px;text-align: center;justify-content: center;">
+    <p>Ⓒ 2022 Word of Mouth A-09</p>
+    <button style="margin-left: 45%;border-radius: 0.5rem;"class="btn-light btn-sm btn shadow"onclick="topFunction()" id="footerBtn" title="Go to top">Back to the Top 🎈</button>
+</div>
+<script>
+    /*
+        Source for Footer Button Code: https://mdbootstrap.com/docs/standard/extended/back-to-top/
+
+     */
+     mybutton = document.getElementById("footerBtn");
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+            function scrollFunction() {
+              if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+              } else {
+                mybutton.style.display = "none";
+              }
+            }
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+              document.body.scrollTop = 0; // For Safari
+              document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }     
+</script>
