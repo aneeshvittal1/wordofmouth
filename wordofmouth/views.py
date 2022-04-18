@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.datastructures import MultiValueDictKeyError
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import Http404, HttpResponseRedirect
 from django.http import HttpResponse
@@ -107,13 +108,16 @@ def new_recipe(request):
         new_r = form.save(commit=False)
         new_r.pub_date = timezone.now()
         new_r.author = request.user.username
-        new_r.picture=request.FILES['filename']
+        if 'filename' not in request.FILES:
+            new_r.picture="defaultRecipePic.png"
+        else:
+            new_r.picture=request.FILES['filename']
         new_r.save()
         form.save_m2m()
         return redirect('/wordofmouth/recipe/'+str(new_r.get_pk()))
     else:
-        print("Error!")
-        return render(request, 'wordofmouth/recipe_experiment.html',{'form': form,'error':True})
+        form = RecipePostForm()
+        return render(request, 'wordofmouth/recipe_experiment.html',{'form': form, 'error': True})
 
 
 """
