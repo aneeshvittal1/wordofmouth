@@ -58,13 +58,20 @@
           </div>
         </div>
         <div style="height:10px;background-color: #ffdd77; margin-top: -25px;"></div>
-
+        <div style="margin-left:15px">
         <div style="text-align: left;">
+          <h4 style="margin-top: 20px; color:#175676; font-weight: bold; ">By {{ recipe.author }}</h4>
+          <h6 style="font-weight: bold;">{{recipe.pub_date}}</h6>
           <img style="max-height:50vh; max-width: 68vw; margin-top:20px; text-align: center;"src ="{{recipe.picture.url}}">
         </div>
-        <h4 style="margin-top: 20px; color:#175676; font-weight: bold; ">By {{ recipe.author }}</h4>
-        <h6 style="font-weight: bold;">{{recipe.pub_date}}</h6>
-        <div style="font-size:18px; margin-top: 20px;">
+        <h3 style="margin-top: 20px;color:#175676;font-size: 50px;">Ingredients.</h3>
+        <div style="height:10px;background-color: #e16f62;width:270px;"></div>
+        <div style="font-size:18px; margin-top: 20px;margin-bottom: 30px;">
+          <p>{{ recipe.ingredients.html | safe }}</p>
+        </div>
+        <h3 style="color:#175676;font-size: 50px;">Directions.</h3>
+        <div style="height:10px;background-color: #e16f62;width:250px;"></div>
+        <div style="font-size:18px; margin-top: 20px;margin-bottom: 40px;">
           <p>{{ recipe.instructions.html | safe }}</p>
         </div>
         {% if recipe.tags %}
@@ -77,6 +84,7 @@
         <div style="margin-top:20px;margin-bottom: 20px;">
           {% include 'comments.html' with url=recipe.id %}
         </div>
+      </div>
       </div>
     </div>
   </body>

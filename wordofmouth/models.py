@@ -25,16 +25,16 @@ class Recipe(models.Model):
         return os.path.join(upload_to, filename)
     def get_pk(self):
         return self.pk
-    
     recipe_title = models.CharField(max_length=200)
     likes = models.ManyToManyField(User, related_name="likes", blank=True)
     favorites = models.ManyToManyField(User, related_name="favorite", default=None, blank=True)
     pub_date = models.DateTimeField('date published')
-    instructions = QuillField()
+    ingredients = QuillField(null=True, blank=False)
+    instructions = QuillField(null=True, blank=False)
     picture = models.FileField(rename_file,null = True, blank= True)
     author = models.CharField(max_length=191)
     description = models.TextField(max_length=300, null = True, blank= True)
-    tags = TaggableManager()
+    tags = TaggableManager(blank=False)
     is_forked = models.PositiveIntegerField(default=0)
     forked_id = models.PositiveIntegerField(default=0)
 
