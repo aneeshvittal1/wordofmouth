@@ -29,9 +29,28 @@ class RecipeModelTests(TestCase):
         y = json.dumps(x)
         u = User(username="test", password="123")
         u.save()
-        #r = Recipe(recipe_title='Bread and Wine', likes=u, pub_date=timezone.now(), instructions=y)
-        #r.save()
-        #self.assertEquals(r.recipe_title, 'Bread and Wine')
-        #self.assertEquals(r.likes, 12)
-        #self.assertEquals(r.instructions, y)
-        #r.delete()
+        r = Recipe(recipe_title='Bread and Wine', pub_date=timezone.now(), instructions=y)
+        r.save()
+        self.assertEquals(r.recipe_title, 'Bread and Wine')
+        self.assertEquals(r.instructions, y)
+        r.delete()
+
+    # def test_favorites(self):
+    #     User.
+
+    # I think im testing the many to many relationships here to see if the user is connected to the likes and favorites
+    def test_favorites_has_user(self):
+        u = User(username="test", password="123")
+        u.save()
+        r = Recipe(recipe_title='Bread and Wine', pub_date=timezone.now())
+        r.save()
+        r.favorites.set([u.pk])
+        self.assertEqual(r.favorites.count(), 1)
+
+    def test_like_has_user(self):
+        u = User(username="test", password="123")
+        u.save()
+        r = Recipe(recipe_title='Bread and Wine', pub_date=timezone.now())
+        r.save()
+        r.likes.set([u.pk])
+        self.assertEqual(r.likes.count(), 1)
