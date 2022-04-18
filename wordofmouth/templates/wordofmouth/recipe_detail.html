@@ -19,15 +19,15 @@
             {% endif %}
           </div>
           <div class="p-2 bd-highlight" style="display:flex">
-            {% if request.user.is_authenticated %}
-            <div id="favorite-section" style="margin-top:25px">
+              {% if request.user.is_authenticated %}
+            <div id="favorite-section" style="margin-top:16px">
                {% if is_favorite %}
               <a href="{% url 'wordofmouth:favorite_recipe' recipe.id%}">
-                <i class="bi-bookmark-heart-fill btn-lg"></i>
+                <i class="bi-bookmark-heart-fill btn-lg" style="font-size:30px; color: #E16F62"></i>
               </a>
               {% else %}
                 <a href="{% url 'wordofmouth:favorite_recipe' recipe.id%}">
-                <i class="bi-bookmark-heart btn-lg"></i>
+                <i class="bi-bookmark-heart btn-lg" style="font-size:30px; color: #E16F62"></i>
                 </a>
               {% endif %}
             </div>
