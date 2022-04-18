@@ -8,7 +8,7 @@ class RecipePostForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = (
-            'recipe_title','instructions','description','tags','is_forked','forked_id'
+            'recipe_title','ingredients','instructions','description','tags','is_forked','forked_id'
            
         )
         exclude = (
