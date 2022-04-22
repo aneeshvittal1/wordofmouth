@@ -77,7 +77,7 @@
         {% if recipe.tags %}
           <div style="display:flex">
             {% for tag in recipe.tags.names %}
-            <a style = "background-color: #ffdd77;color:black;height:30px; margin-right:10px" href="/wordofmouth/tags/{{tag}}" class="btn btn-light btn-sm">#{{tag}}</a>
+            <a style = "background-color: #ffdd77;color:black;height:30px; margin-right:10px; border-radius: 0.5rem;" href="/wordofmouth/tags/{{tag}}" class="btn btn-light btn-sm">#{{tag}}</a>
             {% endfor %}
           </div>
         {% endif %}
