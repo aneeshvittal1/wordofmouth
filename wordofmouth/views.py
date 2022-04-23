@@ -116,7 +116,6 @@ def new_recipe(request):
         form.save_m2m()
         return redirect('/wordofmouth/recipe/'+str(new_r.get_pk()))
     else:
-        form = RecipePostForm()
         return render(request, 'wordofmouth/recipe_experiment.html',{'form': form, 'error': True})
 
 

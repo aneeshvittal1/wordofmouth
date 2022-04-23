@@ -8,7 +8,7 @@
   <title>Word of Mouth</title>
 </head>
 
-<div style="background-color:#175676;">
+<div class=""style="background-color:#175676;position:fixed;top:0%;width:100vw;z-index: 50;">
   <nav style="color: white;" class="navbar navbar-expand-lg navbar-dark" style="background-color:#175676; position:fixed">
     <div class="container-fluid" style="background-color:#175676">
       <a style="font-weight: bold; margin-left: 30px;"class="navbar-brand" href="/">WORD OF MOUTH 🍽️</a>
@@ -17,19 +17,46 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="/wordofmouth">Explore</a>
-          <a class="nav-link" href="/wordofmouth/create">Create</a>
+          <a class="nav-link" href="/wordofmouth"><p class="hover-underline-animation" style="margin:0">Explore</p></a>
+          <a class="nav-link" href="/wordofmouth/create"><p class="hover-underline-animation" style="margin:0">Create</p></a>
           {% if user.is_authenticated %}
-          <a class="nav-link" href="/wordofmouth/favorites">Favorites</a>
-          <a class="nav-link" href="/login">Account</a>
+          <a class="nav-link" href="/wordofmouth/favorites"><p class="hover-underline-animation" style="margin:0">Favorites</p></a>
+          <a class="nav-link" href="/login"><p class="hover-underline-animation" style="margin:0">Account</p></a>
           {% else %}
-          <a class="nav-link" href="/login">Sign In</a>
+          <a class="nav-link" href="/login"><p class="hover-underline-animation" style="margin:0">Sign In + Up</p></a>
           {% endif %}
         </div>
       </div>
     </div>
   </nav>
 </div>
+<style>
+  /*
+    Source for underline animation on hover: https://www.30secondsofcode.org/css/s/hover-underline-animation
+  */
+  .hover-underline-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ffdd77;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+</style>
 <script>
   document.body.style.backgroundColor = "#F3F3F2"
 </script>

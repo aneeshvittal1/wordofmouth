@@ -9,10 +9,10 @@ href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.cs
   <head>
     {% include 'django_quill/media.html' %}
   </head>
-  <body>
+  <body style="margin-top: 75px;">
     {% include "navbar.html" %}
     {% if error %}
-    <div class="alert alert-danger" style="text-align: center;" role="alert">
+    <div class="alert alert-danger" style="text-align: center;margin-top: -20;" role="alert">
       ⚠️ Please make sure that you have given a title to your recipe, written something in the ingredients and instructions field, and have at least one tag! ⚠️
     </div>
     {% endif %}
