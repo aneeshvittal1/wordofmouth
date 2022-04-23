@@ -3,6 +3,11 @@
 {% load static %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
+<!-- Bootstrap icons -->
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
   <title>Word of Mouth</title>
@@ -27,6 +32,13 @@
           {% endif %}
         </div>
       </div>
+      <form class="d-flex d-none d-lg-block" action='/wordofmouth/recipe_search' style="margin:0; margin-right:30px"method="GET">
+        <div class="input-group " style="margin:0">
+          <input type="search" class="form-control-sm form-control " placeholder="Search Recipes" aria-label="Search" name='q'>
+            <button class="btn btn-alert" style="background-color: #E16F62;color: white;" type="submit"><i class="bi bi-search"></i></button>
+          </div>
+        </div>
+      </form>
     </div>
   </nav>
 </div>

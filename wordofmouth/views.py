@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.utils import timezone
@@ -8,6 +9,7 @@ from django.http import HttpResponse
 from .models import Recipe
 from .forms import RecipePostForm
 from taggit.models import Tag
+from django.db.models import Q
 
 
 def index(request):
@@ -149,6 +151,20 @@ def favorite_recipe(request, recipe_id):
 
 
 
-
+def recipe_search(request):
+    recipe = Recipe.objects.all()
+    query = request.GET.get('q')
+    print(query)
+    if query:
+        recipe = Recipe.objects.filter(
+            Q(recipe_title__icontains=query)|
+            Q(ingredients__icontains=query)|
+            Q(instructions__icontains=query)|
+            Q(description__icontains=query)
+            )
+    context = {
+        'recipe': recipe,
+    }
+    return render(request, 'wordofmouth/recipe_search.html', context )
    
 

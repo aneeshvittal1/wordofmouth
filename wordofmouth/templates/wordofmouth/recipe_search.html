@@ -1,10 +1,13 @@
 <html>
     {% include "navbar.html" %}
-    {% if favorite_recipes %}
-    <div class="row grid" data-masonry='{"percentPosition": true }' style="margin-right: 30px; margin-left: 30px;margin-top: 60px;">
-      <h1 style="font-size: 70;color:#e16f62">Favorites 💖</h1>
-      <div style="height:4px;width:100%;background-color: #ffdd77;margin-top: 5px;"></div>
-        {% for recipe in favorite_recipes %}
+
+
+    {% if request.GET.q %}
+    <div class="row grid" data-masonry='{"percentPosition": true }' style="margin-right: 30px; margin-left: 30px;margin-top: 75px;">
+      <h1 style="font-size: 70;color:#e16f62">Recipes with '{{ request.GET.q }}' 🔎</h1>
+    <div style="height:4px;width:100%;background-color: #ffdd77;margin-top: 5px;"></div>
+
+        {% for recipe in recipe %}
         <div class="col-lg-4 col-md-6 mb-2 mt-4 p-2">
 
             <div class="card shadow" style="border-radius: 1em;">
@@ -38,13 +41,19 @@
         {% endfor %}
 
         {% else %}
-        <div style="text-align: left; margin-top: 17%;margin-left: 38vw;">
-          <h1>🍎🍜🌕</h1>
-          <p style="font-size:20px">Cream-colored ponies and crisp apple strudels<br>
-            Doorbells and sleigh bells and schnitzel with noodles<br>
-            Wild geese that fly with the moon on their wings<br>
-            These are a few of my favorite things</p>
-          <a class="btn btn-light" data-bs-placement="right" style="background-color: #ffdd77;color:black;font-weight: bold; margin-top: 10px;" href="/wordofmouth">Find Your Favorite Things</a>
+        <div style="text-align: left; margin-top: 20%;margin-left: 16vw;">
+          <h1>Oops...</h1>
+          <h1>Looks Like You Forgot to Search For Something 🔎</h1>
+          <form class="d-flex d-none d-lg-block" action='/wordofmouth/recipe_search' style="margin-top:20px" method="GET">
+            <div id="search_bar" class="input-group" style="width:50%">
+              <input type="search" class="form-control-lg form-control shadow" style="border-radius: 1.5rem;" placeholder="Search for recipes here..." aria-label="Search" name='q'>
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-link text-success shadow-none" style="margin-left:-50px;margin-top:8px;"><i style="color:#175676;font-size: large;"class="bi bi-search"></i></button>
+              </div>
+            </div>
+          </form>
+          <p style="font-size:20px; margin-top:20px">You can also try checking out some new recipes 😋</p>
+          <a class="btn btn-light" data-bs-placement="right" style="background-color: #ffdd77;color:black;font-weight: bold; " href="/wordofmouth">Head Back Over to Explore</a>
         </div>
         {% endif %}
     </div>
@@ -62,3 +71,4 @@
   box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
 </style>
+

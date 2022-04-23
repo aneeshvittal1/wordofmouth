@@ -14,6 +14,15 @@
     <div style="padding-left:10%;padding-top: 14%;">
       <h1 style="font-size: 60px;"class="text-white">Witness a world full of recipes.</h1>
       <h2 class="text-white">What are we cooking today?</h2>
+      <form class="d-flex " action='/wordofmouth/recipe_search' style="margin-top:20px" method="GET">
+        <div id="search_bar" class="input-group shadow-lg" style="max-width:600px">
+          <input type="search" class="form-control-lg form-control shadow-none" style="border-radius: 1.5rem;" placeholder="Explore New Recipes..." aria-label="Search" name='q'>
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-link text-success shadow-none" style="margin-left:-50px;margin-top:8px;"><i style="color:#175676;font-size: large;"class="bi bi-search"></i></button>
+          </div>
+          </div>
+        </div>
+      </form>
     </div>
     </div>
     <!-- Background image -->
@@ -75,6 +84,8 @@
         {% endif %}
         {% include "footer.html" %}
     </div>
+
+
     <style>
       /* This is to make the cards hover on pointer */
       /*Credits to https://ordinarycoders.com/blog/article/codepen-bootstrap-card-hovers*/ 
@@ -84,6 +95,15 @@
       }
       #recipe_card:hover{
       transform: scale(1.015);
+      box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+      }
+
+      #search_bar{
+      box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+      transition: .5s transform cubic-bezier(.155,1.105,.295,1.12),.5s box-shadow,.5s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+      }
+      #search_bar:hover{
+      transform: scale(1.03);
       box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
       }
     </style>
