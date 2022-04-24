@@ -142,6 +142,7 @@ def favorite_list(request):
 
 
 
+
 def favorite_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     if recipe.favorites.filter(id=request.user.id).exists():
@@ -150,6 +151,16 @@ def favorite_recipe(request, recipe_id):
         recipe.favorites.add(request.user)
 
     return HttpResponseRedirect(reverse('wordofmouth:recipe_detail', args=(recipe.id,)))
+
+
+def user_list(request):
+    user = request.user
+    user_recipes = user.all()
+    context = {
+        'user_recipes': user_recipes,
+    }
+    print(user_recipes)
+    return render(request, 'login.hml', context)
 
 
 
