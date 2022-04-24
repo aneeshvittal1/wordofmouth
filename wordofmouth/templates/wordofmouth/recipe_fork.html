@@ -1,15 +1,10 @@
 {% load socialaccount %}
 {% load bootstrap5 %}
-<!-- Bootstrap icons -->
-<link
-rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-/>
 <html>
   <head>
     {% include 'django_quill/media.html' %}
   </head>
-  <body>
+  <body style="margin-top: 75px;">
     {% include "navbar.html" %}
     <div style="text-align:left; margin-top:15px; margin-left:10%; margin-right:10%; margin-bottom:15px">
       {% if user.is_authenticated %}

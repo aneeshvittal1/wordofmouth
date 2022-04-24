@@ -1,5 +1,4 @@
 from multiprocessing import context
-from turtle import title
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.utils import timezone
@@ -107,6 +106,7 @@ def recipe_fork(request, fork):
 
 def new_recipe(request):
     form = RecipePostForm(request.POST)
+    print(request.POST)
     if form.is_valid():
         new_r = form.save(commit=False)
         new_r.pub_date = timezone.now()
@@ -119,7 +119,6 @@ def new_recipe(request):
         form.save_m2m()
         return redirect('/wordofmouth/recipe/'+str(new_r.get_pk()))
     else:
-        form = RecipePostForm()
         return render(request, 'wordofmouth/recipe_experiment.html',{'form': form, 'error': True})
 
 
