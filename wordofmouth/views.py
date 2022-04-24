@@ -154,8 +154,12 @@ def favorite_recipe(request, recipe_id):
 
 
 def user_list(request):
+    recipe = Recipe.objects.all()
     user = request.user
-    user_recipes = user.all()
+    user_recipes = []
+    for each in recipe:
+        if user.username == each.author:
+            user_recipes.append(each)
     context = {
         'user_recipes': user_recipes,
     }
