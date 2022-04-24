@@ -106,6 +106,7 @@ def recipe_fork(request, fork):
 
 def new_recipe(request):
     form = RecipePostForm(request.POST)
+    print(request.POST)
     if form.is_valid():
         new_r = form.save(commit=False)
         new_r.pub_date = timezone.now()
