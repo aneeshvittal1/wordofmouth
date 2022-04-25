@@ -3,12 +3,17 @@
 {% load static %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
+<!-- Bootstrap icons -->
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
   <title>Word of Mouth</title>
 </head>
 
-<div style="background-color:#175676;">
+<div class=""style="background-color:#175676;position:fixed;top:0%;width:100vw;z-index: 50;">
   <nav style="color: white;" class="navbar navbar-expand-lg navbar-dark" style="background-color:#175676; position:fixed">
     <div class="container-fluid" style="background-color:#175676">
       <a style="font-weight: bold; margin-left: 30px;"class="navbar-brand" href="/">WORD OF MOUTH 🍽️</a>
@@ -17,24 +22,54 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="/wordofmouth">Explore</a>
-          <a class="nav-link" href="/wordofmouth/create">Create</a>
+          <a class="nav-link" href="/wordofmouth"><p class="hover-underline-animation" style="margin:0">Explore</p></a>
+          <a class="nav-link" href="/wordofmouth/create"><p class="hover-underline-animation" style="margin:0">Create</p></a>
           {% if user.is_authenticated %}
-          <a class="nav-link" href="/wordofmouth/favorites">Favorites</a>
-          <a class="nav-link" href="/wordofmouth/profile">My Recipes</a>
-          <a class="nav-link" href="/login">Account</a>
+          <a class="nav-link" href="/wordofmouth/favorites"><p class="hover-underline-animation" style="margin:0">Favorites</p></a>
+            <a class="nav-link" href="/wordofmouth/profile"><p class="hover-underline-animation" style="margin:0">My Recipes</p></a>
+          <a class="nav-link" href="/login"><p class="hover-underline-animation" style="margin:0">Account</p></a>
           {% else %}
-          <a class="nav-link" href="/login">Sign In</a>
+          <a class="nav-link" href="/login"><p class="hover-underline-animation" style="margin:0">Sign In + Up</p></a>
           {% endif %}
         </div>
       </div>
+      <form class="d-flex d-none d-lg-block" action='/wordofmouth/recipe_search' style="margin:0; margin-right:35px"method="GET">
+        <div class="input-group " style="margin:0">
+          <input type="search" class="form-control-sm form-control shadow-none" placeholder="Search Recipes" aria-label="Search" name='q'>
+            <button class="btn btn-alert" style="background-color: #E16F62;color: white;" type="submit"><i class="bi bi-search"></i></button>
+          </div>
+        </div>
+      </form>
     </div>
-    <form class="d-flex" action='/wordofmouth/recipe_search' method="GET">
-      <input class="form-control me-2" type="search" placeholder="Search Recipes" aria-label="Search" name='q'>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </nav>
 </div>
+<style>
+  /*
+    Source for underline animation on hover: https://www.30secondsofcode.org/css/s/hover-underline-animation
+  */
+  .hover-underline-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ffdd77;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+</style>
 <script>
   document.body.style.backgroundColor = "#F3F3F2"
 </script>
