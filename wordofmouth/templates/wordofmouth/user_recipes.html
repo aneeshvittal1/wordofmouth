@@ -1,12 +1,11 @@
 <html>
     {% include "navbar.html" %}
     {% if user_recipes %}
-    <div class="row grid" data-masonry='{"percentPosition": true }' style="margin-right: 30px; margin-left: 30px;margin-top: 20px;">
+    <div class="row grid" data-masonry='{"percentPosition": true }' style="margin-right: 30px; margin-left: 30px;margin-top: 60px;">
       <h1 style="font-size: 70;color:#e16f62">My Recipes</h1>
       <div style="height:4px;width:100%;background-color: #ffdd77;margin-top: 5px;"></div>
         {% for recipe in user_recipes %}
         <div class="col-lg-4 col-md-6 mb-2 mt-4 p-2">
-
             <div class="card shadow" style="border-radius: 1em;">
               <div class="bg-image hover-overlay ripple" style="text-align: center;" data-mdb-ripple-color="light">
                 <img

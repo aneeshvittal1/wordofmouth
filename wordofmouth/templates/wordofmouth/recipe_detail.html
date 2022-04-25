@@ -9,7 +9,11 @@
             <h1 style="color:#e16f62;font-size: 70px;">{{ recipe.recipe_title }}</h1>
             {% if recipe.is_forked %}
               <div style="margin-top:5px;margin-bottom: 15px;">
+                {% if recipe.forked_id %}
                 <h6>🍴 This recipe is forked. See the original recipe <a href="{% url 'wordofmouth:recipe_detail' recipe.forked_id %}">{{ "here." }}</a></h6>
+                {% else %}
+                <h6>🍴 This recipe was forked. The original recipe has been deleted. </h6>
+                {% endif %}
               </div>
             {% endif %}
           </div>
