@@ -81,10 +81,10 @@
             {% endfor %}
           </div>
         {% endif %}
-          {% if request.user.is_authenticated %}
+          {% if user.username == recipe.author %}
         <div class="p-2 bd-highlight" style="display:flex">
           <a href="{% url 'wordofmouth:recipe_delete' recipe.id %}">
-            <button type="button" class="btn btn-outline-danger">Delete</button>
+            <button style="float: right;" type="button" class="btn btn-outline-danger">Delete</button>
           </a>
         </div>
           {% endif %}
