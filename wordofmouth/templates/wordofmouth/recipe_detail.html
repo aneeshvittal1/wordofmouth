@@ -81,6 +81,13 @@
             {% endfor %}
           </div>
         {% endif %}
+          {% if request.user.is_authenticated %}
+        <div class="p-2 bd-highlight" style="display:flex">
+          <a href="{% url 'wordofmouth:recipe_delete' recipe.id %}">
+            <button type="button" class="btn btn-outline-danger">Delete</button>
+          </a>
+        </div>
+          {% endif %}
         <div style="margin-top:20px;margin-bottom: 20px;">
           {% include 'comments.html' with url=recipe.id %}
         </div>

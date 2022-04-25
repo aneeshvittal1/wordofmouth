@@ -153,21 +153,6 @@ def favorite_recipe(request, recipe_id):
     return HttpResponseRedirect(reverse('wordofmouth:recipe_detail', args=(recipe.id,)))
 
 
-def user_list(request):
-    recipes = Recipe.objects.all()
-    user = request.user
-    user_recipes = []
-    for each in recipes:
-        if user.username == each.author:
-            user_recipes.append(each)
-    context = {
-        'user_recipes': user_recipes,
-    }
-    print(user_recipes)
-    return render(request, 'wordofmouth/user_recipes.html', context)
-
-
-
 def recipe_search(request):
     recipe = Recipe.objects.all()
     query = request.GET.get('q')
@@ -183,5 +168,26 @@ def recipe_search(request):
         'recipe': recipe,
     }
     return render(request, 'wordofmouth/recipe_search.html', context )
-   
 
+
+def user_list(request):
+    recipes = Recipe.objects.all()
+    user = request.user
+    user_recipes = []
+    for each in recipes:
+        if user.username == each.author:
+            user_recipes.append(each)
+    context = {
+        'user_recipes': user_recipes,
+    }
+    print(user_recipes)
+    return render(request, 'wordofmouth/user_recipes.html', context)
+
+
+def recipe_delete(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    user = request.user
+    if user.username != recipe.author:
+        raise Http404
+    recipe.delete()
+    return HttpResponseRedirect(reverse('wordofmouth:user_list',))
