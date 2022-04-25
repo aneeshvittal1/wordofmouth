@@ -8,38 +8,6 @@
       <h1>Welcome Back <span style="color: #B3816E">{{ user.username }}</span>!</h1>
         <p>What's cooking? 🍳🍚🍕</p>
         <a class="btn btn-light" style="background-color: #ffdd77;color:black;font-weight: bold;" href="{% url 'account_logout' %}">Sign Out</a>
-      {% for recipe in user_recipes %}
-        <div class="col-lg-4 col-md-6 mb-2 mt-4 p-2">
-
-            <div class="card shadow" style="border-radius: 1em;">
-              <div class="bg-image hover-overlay ripple" style="text-align: center;" data-mdb-ripple-color="light">
-                <img
-                  src="{{recipe.picture.url}}"
-                  class="img-fluid"
-                  onerror="this.style='display:none;'"
-                  style="border-radius: 1em 1em 0 0; width: 100%;height: 15vw;object-fit: cover;"
-                />
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-              </div>
-              <div class="card-body">
-                <h5 class="{% url 'wordofmouth:recipe_detail' recipe.id %}">{{ recipe.recipe_title }}</h5>
-                {% if recipe.description != None %}
-                <p class="{% url 'wordofmouth:recipe_detail' recipe.id %}">{{ recipe.description }}</p>
-                {% endif %}
-                <a href="{% url 'wordofmouth:recipe_detail' recipe.id %}" style="background-color: #ffdd77;color:black;font-weight: 200; margin-top: 10px;" class="btn btn-light">Go To Recipe</a>
-              </div>
-            </div>
-          </div>
-
-          <script>
-            var $grid = $('.grid').masonry({
-            });
-            $grid.imagesLoaded().progress( function() {
-            $grid.masonry('layout');});
-          </script>
-        {% endfor %}
       {% else %}
         <h1>👋</h1>
         <h1>Welcome Back!</h1>

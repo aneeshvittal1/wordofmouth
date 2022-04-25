@@ -154,17 +154,17 @@ def favorite_recipe(request, recipe_id):
 
 
 def user_list(request):
-    recipe = Recipe.objects.all()
+    recipes = Recipe.objects.all()
     user = request.user
     user_recipes = []
-    for each in recipe:
+    for each in recipes:
         if user.username == each.author:
             user_recipes.append(each)
     context = {
         'user_recipes': user_recipes,
     }
     print(user_recipes)
-    return render(request, 'login.hml', context)
+    return render(request, 'wordofmouth/user_recipes.html', context)
 
 
 

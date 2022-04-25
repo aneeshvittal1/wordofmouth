@@ -1,0 +1,61 @@
+<html>
+    {% include "navbar.html" %}
+    {% if user_recipes %}
+    <div class="row grid" data-masonry='{"percentPosition": true }' style="margin-right: 30px; margin-left: 30px;margin-top: 20px;">
+      <h1 style="font-size: 70;color:#e16f62">My Recipes</h1>
+      <div style="height:4px;width:100%;background-color: #ffdd77;margin-top: 5px;"></div>
+        {% for recipe in user_recipes %}
+        <div class="col-lg-4 col-md-6 mb-2 mt-4 p-2">
+
+            <div class="card shadow" style="border-radius: 1em;">
+              <div class="bg-image hover-overlay ripple" style="text-align: center;" data-mdb-ripple-color="light">
+                <img
+                  src="{{recipe.picture.url}}"
+                  class="img-fluid"
+                  onerror="this.style='display:none;'"
+                  style="border-radius: 1em 1em 0 0; width: 100%;height: 15vw;object-fit: cover;"
+                />
+                <a href="#!">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+              </div>
+              <div class="card-body">
+                <h5 class="{% url 'wordofmouth:recipe_detail' recipe.id %}">{{ recipe.recipe_title }}</h5>
+                {% if recipe.description != None %}
+                <p class="{% url 'wordofmouth:recipe_detail' recipe.id %}">{{ recipe.description }}</p>
+                {% endif %}
+                <a href="{% url 'wordofmouth:recipe_detail' recipe.id %}" style="background-color: #ffdd77;color:black;font-weight: 200; margin-top: 10px;" class="btn btn-light">Go To Recipe</a>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            var $grid = $('.grid').masonry({
+            });
+            $grid.imagesLoaded().progress( function() {
+            $grid.masonry('layout');});
+          </script>
+        {% endfor %}
+
+        {% else %}
+        <div style="text-align: left; margin-top: 16%;margin-left: 38vw;">
+          <h1>🍎🍜🌕</h1>
+          <p style="font-size:20px">Create Something Delicious</p>
+          <a class="btn btn-light" data-bs-placement="right" style="background-color: #ffdd77;color:black;font-weight: bold; margin-top: 10px;" href="/wordofmouth/create">Create</a>
+        </div>
+        {% endif %}
+    </div>
+</html>
+<style>
+  /* This is to make the cards hover on pointer */
+  /*Credits to https://ordinarycoders.com/blog/article/codepen-bootstrap-card-hovers*/
+  .card{
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+  transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+  }
+
+.card:hover{
+  transform: scale(1.015);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+</style>
