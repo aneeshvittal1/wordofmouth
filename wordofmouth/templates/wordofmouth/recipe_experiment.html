@@ -16,31 +16,32 @@
       <div class="card shadow" style="border-radius:1rem">
         <div style="margin-left:30px;margin-right:30px;margin-top:25px;margin-bottom: 10px;">
           <h1>Share your culinary genius <span style="color: #B3816E">{{ user.username }}</span>.</h1>
+          <h7>Psst—Click on the <i style="margin-left:-9;margin-right: -9;cursor: default;"class="btn bi bi-info-circle-fill"></i> button to learn more about how a field works. </h7>
           <form action="{% url 'wordofmouth:new_recipe' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
             <input type="hidden" name="is_forked" value="0" />
             <input type="hidden" name="forked_id" value="0" />
             <div>
-              <h3>Your Recipe's Title. </h3>   
+              <h3>Your Recipe's Title </h3>   
               {% bootstrap_field form.recipe_title show_label=False %}
             </div>
             <div style="margin-top:20px">
               <div style="display:flex; flex-direction: row;">
-                <h3>Main Picture.</h3>
+                <h3>Main Picture</h3>
                 <a style=" margin-bottom:10px;" class="btn bi bi-info-circle-fill" type="button" data-bs-toggle="popover" title="What's the Main Picture?" data-bs-content="This is an optional picture that will be displayed when your recipe appears on our explore page or search page.  In addition, it will be the image featured at the top of your recipe.  You are able to add additional pictures to your recipe's instructions/ingredients through the text box." ></a>
               </div>
               <input class="form-control" type="file" accept=".jpg,.jpeg,.png" id="filename" name="filename">
             </div>
             <div style="margin-top:20px">
               <div style="display:flex; flex-direction: row;">
-                <h3>Brief Description.</h3>
+                <h3>Brief Description</h3>
                 <a style=" margin-bottom:10px;" data-bs-placement="right" class="btn bi bi-info-circle-fill" type="button" data-bs-toggle="popover" title="What's the Description?" data-bs-content="This is an optional description displayed when we list your recipe on our explore page or search results.  You are limited to 280 characters." ></a>
               </div>
               {% bootstrap_field form.description show_label=False %}
             </div>
             <div style="margin-top:20px;height:50vh">
               <div style="display:flex; flex-direction: row;">
-                <h3>Ingredients.</h3>
+                <h3>Ingredients</h3>
                 <a style=" margin-bottom:10px;" data-bs-placement="right" class="btn bi bi-info-circle-fill" type="button" data-bs-toggle="popover" title="How Do I Use This Fancy Text Box To Write My Recipe?" data-bs-html="true" 
                 data-bs-content="<p>Good question! Both the Ingredients and Instructions section use a rich text editor.  This gives you the freedom to customize the format of your text as you please.  We'll explain how each of the buttons on the toolbar work from left to right:</p>
                 <ol>
@@ -61,7 +62,7 @@
             </div>
             <div style="margin-top:120px;height:50vh">
               <div style="display:flex; flex-direction: row;">
-                <h3>Instructions.</h3>
+                <h3>Instructions</h3>
                 <a style=" margin-bottom:10px;" data-bs-placement="right" class="btn bi bi-info-circle-fill" type="button" data-bs-toggle="popover" title="How Do I Use This Fancy Text Box To Write My Recipe?" data-bs-html="true" 
                 data-bs-content="<p>Good question! Both the Ingredients and Instructions section use a rich text editor.  This gives you the freedom to customize the format of your text as you please.  We'll explain how each of the buttons on the toolbar work from left to right:</p>
                 <ol>
@@ -82,8 +83,8 @@
             </div>
             <div style="margin-top:105px">
               <div style="display:flex; flex-direction: row;">
-                <h3>List Tags.</h3>
-                <a style=" margin-bottom:10px;" data-bs-placement="right" class="btn bi bi-info-circle-fill" type="button" data-bs-toggle="popover" title="What are Tags?" data-bs-content="Tags allow us to sort your recipe by a certain property. Don't forget to separate the tags with commas! Also, you don't need to add a hashtag. (Ex: lunch, quick, pasta, vegetarian)" ></a>
+                <h3>List Tags</h3>
+                <a style=" margin-bottom:10px;" data-bs-placement="right" class="btn bi bi-info-circle-fill" type="button" data-bs-toggle="popover" title="What are Tags?" data-bs-content="Tags allow us to sort your recipe by a certain property. Don't forget to separate the tags with commas! You can choose to add a hashtag in front or not (if you don't we'll add one for you). Ex: lunch, quick, vegan and #lunch, #quick, #vegan are the same" ></a>
               </div>
               {% bootstrap_field form.tags show_label=False %}
             </div>

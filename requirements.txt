@@ -11,3 +11,4 @@ boto3
 django-quill-editor
 django-taggit
 djangorestframework
+Pillow  
