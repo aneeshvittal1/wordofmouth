@@ -77,17 +77,17 @@
               </div>
             </div>
           </div>
-          <script>
-            var $grid = $('.grid').masonry({
-            });
-            $grid.imagesLoaded().progress( function() {
-            $grid.masonry('layout');});
-          </script>
         {% endfor %}
         {% else %}
             <p>No recipes are available at the moment🥺</p>
         {% endif %}
         {% include "footer.html" %}
+        <script>
+            var $grid = $('.grid').masonry({
+            });
+            $grid.imagesLoaded().progress( function() {
+            $grid.masonry('layout');});
+          </script>
     </div>
 
 
