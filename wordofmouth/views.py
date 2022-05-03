@@ -105,7 +105,9 @@ def recipe_fork(request, fork):
 
 
 def new_recipe(request):
-    form = RecipePostForm(request.POST)
+    new_r = request.POST.copy()
+    new_r['tags'] = new_r['tags'].replace('#', '')
+    form = RecipePostForm(new_r)
     print(request.POST)
     if form.is_valid():
         new_r = form.save(commit=False)
