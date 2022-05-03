@@ -15,6 +15,8 @@ urlpatterns = [
     path('wordofmouth/newrecipe', views.new_recipe, name='new_recipe'),
     path('like', views.like_recipe, name='like_recipe'),
     path('recipe_search', views.recipe_search, name='recipe_search'),
+    #path('recipe_delete/<int:recipe_id>', views.recipe_delete, name="recipe_delete"),
+    path('profile', views.user_list, name='user_list'),
 ]
 
 
