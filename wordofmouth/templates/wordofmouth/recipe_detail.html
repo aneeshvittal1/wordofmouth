@@ -9,11 +9,7 @@
             <h1 style="color:#e16f62;font-size: 70px;">{{ recipe.recipe_title }}</h1>
             {% if recipe.is_forked %}
               <div style="margin-top:5px;margin-bottom: 15px;">
-                {% if recipe.forked_id %}
                 <h6>🍴 This recipe is forked. See the original recipe <a href="{% url 'wordofmouth:recipe_detail' recipe.forked_id %}">{{ "here." }}</a></h6>
-                {% else %}
-                <h6>🍴 This recipe was forked. The original recipe has been deleted. </h6>
-                {% endif %}
               </div>
             {% endif %}
           </div>
@@ -80,13 +76,6 @@
             {% endfor %}
           </div>
         {% endif %}
-          {% if user.username == recipe.author %}
-        <div class="p-2 bd-highlight" style="display:flex">
-          <a href="{% url 'wordofmouth:recipe_delete' recipe.id %}">
-            <button style="float: right;" type="button" class="btn btn-outline-danger">Delete</button>
-          </a>
-        </div>
-          {% endif %}
         <div style="margin-top:20px;margin-bottom: 20px;text-align: center;">
           <a href="javascript:window.location.reload(true)"><i class="bi bi-gear-fill" style="color:#175676"></i></a><br/>
           <h7 style="font-style: italic;"> If your Disqus login window is stuck on the loading gears, refresh this page or click on the gear icon above to finish logging in!</h7>

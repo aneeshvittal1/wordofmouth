@@ -2,7 +2,7 @@
     {% include "navbar.html" %}
     {% if user_recipes %}
     <div class="row grid" data-masonry='{"percentPosition": true }' style="margin-right: 30px; margin-left: 30px;margin-top: 60px;">
-      <h1 style="font-size: 70;color:#e16f62">My Recipes</h1>
+      <h1 style="font-size: 70;color:#e16f62">My Recipes ✏️</h1>
       <div style="height:4px;width:100%;background-color: #ffdd77;margin-top: 5px;"></div>
         {% for recipe in user_recipes %}
         <div class="col-lg-4 col-md-6 mb-2 mt-4 p-2">
@@ -39,8 +39,9 @@
         {% else %}
         <div style="text-align: left; margin-top: 16%;margin-left: 38vw;">
           <h1>🍎🍜🌕</h1>
-          <p style="font-size:20px">Create Something Delicious</p>
-          <a class="btn btn-light" data-bs-placement="right" style="background-color: #ffdd77;color:black;font-weight: bold; margin-top: 10px;" href="/wordofmouth/create">Create</a>
+          <p style="font-size:20px">You haven't created any recipes yet.<br>
+            Share your culinary genius.</p>
+          <a class="btn btn-light" data-bs-placement="right" style="background-color: #ffdd77;color:black;font-weight: bold; margin-top: 10px;" href="/wordofmouth/create">Create Something Delicious</a>
         </div>
         {% endif %}
     </div>

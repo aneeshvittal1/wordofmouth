@@ -70,7 +70,11 @@
                         <a href="{% url 'wordofmouth:recipe_detail' recipe.id %}" style="background-color: #ffdd77;color:black;font-weight: 200; margin-top: 10px;" class="btn btn-light">Go To Recipe</a>
                       </div>
                       <div class="col-sm-4"  style="margin-left:23px; margin-top: 20px;">
+                          {% if recipe.total_likes == 1 %}
+                          <p style="text-align: right;">{{recipe.total_likes}} Like 👍</p>
+                          {% else %}
                         <p style="text-align: right;">{{recipe.total_likes}} Likes 👍</p>
+                          {% endif %}
                       </div>
                     </div>
                 </div>         

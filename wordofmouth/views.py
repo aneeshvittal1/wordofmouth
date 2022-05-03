@@ -185,10 +185,10 @@ def user_list(request):
     return render(request, 'wordofmouth/user_recipes.html', context)
 
 
-def recipe_delete(request, recipe_id):
-    recipe = get_object_or_404(Recipe, id=recipe_id)
-    user = request.user
-    if user.username != recipe.author:
-        raise Http404
-    recipe.delete()
-    return HttpResponseRedirect(reverse('wordofmouth:user_list',))
+# def recipe_delete(request, recipe_id):
+#     recipe = get_object_or_404(Recipe, id=recipe_id)
+#     user = request.user
+#     if user.username != recipe.author:
+#         raise Http404
+#     recipe.delete()
+#     return HttpResponseRedirect(reverse('wordofmouth:user_list',))

@@ -51,6 +51,13 @@ class RecipeModelTests(TestCase):
         r.favorites.set([u.pk])
         self.assertEqual(r.favorites.count(), 1)
 
+    def test_favorites_has_no_user(self):
+        u = User(username="test", password="123")
+        u.save()
+        r = Recipe(recipe_title='Bread and Wine', pub_date=timezone.now())
+        r.save()
+        self.assertNotEqual(r.favorites.count(), 1)
+
     def test_like_has_user(self):
         u = User(username="test", password="123")
         u.save()
@@ -58,6 +65,13 @@ class RecipeModelTests(TestCase):
         r.save()
         r.likes.set([u.pk])
         self.assertEqual(r.likes.count(), 1)
+
+    def test_like_has_no_user(self):
+        u = User(username="test", password="123")
+        u.save()
+        r = Recipe(recipe_title='Bread and Wine', pub_date=timezone.now())
+        r.save()
+        self.assertNotEqual(r.likes.count(), 1)
 
     def test_quill_field_delta(self):
         x = {
