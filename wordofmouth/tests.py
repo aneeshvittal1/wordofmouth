@@ -7,6 +7,21 @@ from django_quill.fields import QuillField
 from .forms import RecipePostForm
 from taggit.managers import TaggableManager
 from django_quill.fields import QuillField
+from django.urls import reverse
+
+
+# ------------------------------------------------------------ #
+
+def create_recipe(title):
+    """ 
+    Helper function to create recipe for testing
+    
+    :param title: title of the recipe
+    :return: recipe model with a few default values
+    """
+    return Recipe.objects.create(recipe_title=title, pub_date=timezone.now(), picture="defaultRecipePic.png")
+
+# ------------------------------------------------------------ #
 
 # Create your tests here.
 class LoginTest(TestCase):
@@ -171,3 +186,106 @@ class RecipeFormTest(TestCase):
         r = {'is_forked': 0, 'forked_id': 0, 'recipe_title': ['Hello'], 'ingredients': y, 'instructions': y, 'tags': ['test']}
         form = RecipePostForm(r)
         self.assertTrue(form.is_valid())
+
+# ------------------------------------------------------------ #
+
+class RecipeDetailViewTest(TestCase):
+    """
+    Tests for the recipe_detail view
+    """
+
+    def test_existent_recipe(self):
+        """
+        Basic test for a recipe that does exist
+        
+        We want to test is the recipe_detial view return the correct recipe
+        """
+
+        test_recipe = create_recipe("test recipe")
+
+        url = reverse('wordofmouth:recipe_detail', args=(test_recipe.id,))
+        response = self.client.get(url, follow=True)
+
+        self.assertEquals(response.status_code, 200)
+        self.assertContains(response, test_recipe.recipe_title)
+        self.assertContains(response, test_recipe.id)
+        self.assertTemplateUsed(response, 'wordofmouth/recipe_detail.html')
+
+    def test_nonexistent_recipe(self):
+        """
+        Test for a recipe that does not exist
+        
+        This test makes sure the recipe_detail view returns a 404 if the recipe does not exist
+        """
+
+        test_id = 999999 # I'm assuming we won't have this many recipes
+
+        url = reverse('wordofmouth:recipe_detail', args=(test_id,))
+        response = self.client.get(url, follow=True)
+
+        self.assertEqual(response.status_code, 404)
+
+# ------------------------------------------------------------ #
+
+class RecipeExploreViewTest(TestCase):
+    """
+    Tests for recipe_explore view
+    """
+    def test_recipe_explore_functionality(self):
+        """
+        Test the recipe_explore view uses correct template
+        """
+
+        url = reverse('wordofmouth:recipe_explore')
+        response = self.client.get(url, follow=True)
+
+        self.assertTemplateUsed(response, 'wordofmouth/recipe_explore.html')
+
+# ------------------------------------------------------------ #
+
+class RecipeExperimentViewTest(TestCase):
+    """
+    Tests for recipe_experiment view
+    """
+    def test_recipe_experiment_functionality(self):
+        """
+        Test the recipe_experiment view uses correct template
+        """
+
+        url = reverse('wordofmouth:recipe_experiment')
+        response = self.client.get(url, follow=True)
+
+        self.assertTemplateUsed(response, 'wordofmouth/recipe_experiment.html')
+
+# ------------------------------------------------------------ #
+
+class RecipeForkViewTest(TestCase):
+    """
+    Tests the recipe_fork view
+    """
+    def test_recipe_fork_functionality(self):
+        """
+        Test the recipe_fork view uses correct template
+        """
+        og_recipe = create_recipe("test recipe")
+
+        url = reverse('wordofmouth:recipe_fork', args=(og_recipe.id,))
+        response = self.client.get(url, follow=True)
+
+        self.assertTemplateUsed(response, 'wordofmouth/recipe_fork.html')
+
+# ------------------------------------------------------------ #
+
+# class NewRecipeViewTest(TestCase):
+#     """
+#     Tests the new_recipe view
+#     """
+#     def test_new_recipe_invalid_form(self):
+#         """
+#         Test the new_recipe view uses correct template when given invalid form
+#         """
+
+#         url = reverse('wordofmouth:new_recipe')
+#         response = self.client.get(url, follow=True)
+
+#         self.assertTemplateUsed(response, 'wordofmouth/recipe_experiment.html')
