@@ -28,7 +28,13 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['wordofmoutha9.herokuapp.com', '127.0.0.1', 'localhost']
 
-
+"""
+    *  REFERENCE
+    *  Title: <User Registration in Django using Google OAuth>
+    *  Author: <Geoffrey Mungai>
+    *  Date: <Dec 18, 2020>
+    *  URL: <https://www.section.io/engineering-education/django-google-oauth/>
+    """
 # Application definition
 
 INSTALLED_APPS = [
@@ -61,12 +67,18 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
-#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-#SECURE_SSL_REDIRECT = False
 
-SECURE_SSL_REDIRECT=False
-SESSION_COOKIE_SECURE=False
-CSRF_COOKIE_SECURE=False
+"""
+*  REFERENCES
+*  Title: <Trying to make a Django-based site use HTTPS-only, not sure if it's secure?>
+*  Author: <Community Wiki>
+*  Date: <March 17, 2017>
+*  URL: <https://security.stackexchange.com/questions/8964/trying-to-make-a-django-based-site-use-https-only-not-sure-if-its-secure>
+"""
+
+SECURE_SSL_REDIRECT=True
+SESSION_COOKIE_SECURE=True
+CSRF_COOKIE_SECURE=True
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -134,23 +146,12 @@ USE_I18N = True
 
 USE_TZ = True
 
-#Cookie Security
-#SECURE_CONTENT_TYPE_NOSNIFF = True
-#SECURE_BROWSER_XSS_FILTER = True
-#SESSION_COOKIE_SECURE = True
-#CSRF_COOKIE_SECURE = True
-#SECURE_SSL_REDIRECT = True
-#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-#CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:800', 'https://127.0.0.1:800', 'http://wordofmoutha9.herokuapp.com', 'https://wordofmoutha9.herokuapp.com']
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
 STATIC_ROOT = 'mysite/'
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# I changed this line because of testing (the line below has the 'Manifest' part taken out) and it seems to work.
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
@@ -211,7 +212,13 @@ if 'DATABASE_URL' in os.environ:
 
 
 #AWS SETTINGS
-
+"""
+*  REFERENCE
+*  Title: <How to Upload Files to S3 Using Django Storages>
+*  Author: <Pretty Printed>
+*  Date: <May 10, 2021>
+*  URL: <https://www.youtube.com/watch?v=nzLMA9WZqMM&ab_channel=PrettyPrinted>
+"""
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_ACCESS_KEY_ID = 'AKIASHZ6LQWFLFCISZG6'
 AWS_SECRET_ACCESS_KEY = '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'

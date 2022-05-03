@@ -14,9 +14,16 @@ import os
 # class User(AbstractUser):
 #     pass
 
-
 class Recipe(models.Model):
     # fields
+
+    """
+    *  REFERENCE
+    *  Title: <Django ImageField change file name on upload>
+    *  Author: <M-Jamiri>
+    *  Date: <Nov 01, 2020>
+    *  URL: <https://stackoverflow.com/questions/15140942/django-imagefield-change-file-name-on-upload>
+    """
     def rename_file(self, filename):
         upload_to = 'media/'
         ext = filename.split('.')[-1]
