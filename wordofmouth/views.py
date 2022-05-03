@@ -153,6 +153,13 @@ def favorite_recipe(request, recipe_id):
 
     return HttpResponseRedirect(reverse('wordofmouth:recipe_detail', args=(recipe.id,)))
 
+"""
+*  REFERENCES
+*  Title: <Learn Django - The Easy Way | Searching Posts | Tutorial - 31>
+*  Author: <Abhishek Verma>
+*  Date: <March 7, 2018>
+*  URL: <https://www.youtube.com/watch?v=Rk83AiKTDLY>
+"""
 
 def recipe_search(request):
     recipe = Recipe.objects.all()
